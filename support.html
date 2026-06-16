@@ -6,9 +6,192 @@
   <title>Pullhub Support</title>
   <link rel="icon" href="pullhub-icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="docs.css">
+  <style>
+    .support-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .support-stack .doc-card {
+      margin-left: 0;
+      max-width: none;
+      padding: clamp(24px, 3.4vw, 46px);
+    }
+
+    .support-stack .doc-card h2 {
+      margin-top: 0;
+    }
+
+    .support-jump {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .support-jump-label {
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .support-jump a {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent);
+      border: var(--bd) solid var(--line);
+      border-radius: 999px;
+      box-shadow: 3px 3px 0 0 var(--ink);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: 8px 13px;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+
+    .support-jump a:hover {
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 0 var(--ink);
+    }
+
+    .support-jump a:focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 3px;
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 0 var(--ink);
+    }
+
+    .fix-groups {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .fix-group {
+      background: color-mix(in oklch, var(--accent) 18%, var(--paper));
+      border: var(--bd) solid var(--line);
+      border-radius: 16px;
+      padding: clamp(16px, 2.4vw, 22px);
+      scroll-margin-top: 88px;
+    }
+
+    .fix-group h3 {
+      display: inline-flex;
+      background: var(--accent);
+      border: var(--bd) solid var(--line);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .fix-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .fix-item {
+      border-top: var(--bd) solid var(--line);
+      padding-top: 14px;
+    }
+
+    .fix-item:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .fix-item h4 {
+      font-size: clamp(19px, 2vw, 24px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .fix-item ul,
+    .support-checklist,
+    .good-list {
+      padding-left: 20px;
+    }
+
+    .fix-item li,
+    .support-checklist li,
+    .good-list li {
+      margin: 4px 0;
+    }
+
+    .support-note {
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.55;
+      margin: 10px 0 0;
+    }
+
+    .contact-card {
+      background: color-mix(in oklch, var(--accent) 28%, var(--paper));
+    }
+
+    .contact-flow {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr);
+      gap: clamp(22px, 4vw, 42px);
+      align-items: start;
+    }
+
+    .contact-flow h3 {
+      font-size: clamp(20px, 2.1vw, 26px);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    .good-card {
+      box-shadow: 5px 5px 0 0 var(--ink);
+      padding: clamp(24px, 3vw, 38px);
+    }
+
+    .support-foot-links {
+      display: inline-flex;
+      gap: 16px;
+    }
+
+    .support-foot-links a:hover {
+      color: var(--ink);
+    }
+
+    @media (max-width: 760px) {
+      .contact-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .support-page .doc-hero {
+        padding-top: 58px;
+        padding-bottom: 36px;
+      }
+
+      .support-page .doc-title {
+        font-size: clamp(44px, 14vw, 62px);
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="page" data-theme="caution" data-bg="cream">
+  <div class="page support-page" data-theme="caution" data-bg="cream">
     <nav class="nav rule-b">
       <div class="nav-inner pad">
         <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
@@ -25,30 +208,175 @@
       <section class="doc-hero">
         <div class="doc-wrap">
           <span class="kicker">Support</span>
-          <h1 class="doc-title">Need help?</h1>
-          <p class="doc-lead">Send the details and we will use them to trace the issue faster.</p>
+          <h1 class="doc-title">Need help with Pullhub?</h1>
+          <p class="doc-lead">Find a quick fix below, or email us with the details so we can help faster.</p>
         </div>
       </section>
 
       <section class="doc-section">
-        <div class="doc-wrap support-grid">
+        <nav class="doc-wrap support-jump" aria-label="Support quick links">
+          <span class="support-jump-label">Jump to:</span>
+          <a href="#slides-pushing">Slides &amp; pushing</a>
+          <a href="#account-billing">Account &amp; billing</a>
+          <a href="#sharing">Sharing</a>
+          <a href="#saving-export">Saving &amp; export</a>
+        </nav>
+
+        <div class="doc-wrap support-stack">
           <article class="doc-card">
-            <h2>Contact</h2>
-            <p>Need help with Pullhub? Email support and include the action you were trying to complete.</p>
-            <a class="btn btn--yellow mail-btn" href="mailto:support@debutt.studio">support@debutt.studio</a>
+            <h2>Quick fixes</h2>
+            <div class="fix-groups">
+              <section class="fix-group" id="slides-pushing">
+                <h3>Slides &amp; pushing</h3>
+                <div class="fix-list">
+                  <div class="fix-item">
+                    <h4>Google Slides isn't detected</h4>
+                    <ul>
+                      <li>Make sure a Google Slides file is open.</li>
+                      <li>Refresh the Google Slides tab.</li>
+                      <li>Open Pullhub again from the toolbar.</li>
+                      <li>Restart Chrome if it still is not detected.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>Images are missing or aren't pushed to Slides</h4>
+                    <ul>
+                      <li>Confirm you are signed into Google and the target Slides file is open.</li>
+                      <li>Try pushing fewer images first.</li>
+                      <li>If a site blocks an image, Pullhub tries to save a copy to your Google Drive so Slides can display it.</li>
+                      <li>If an image is still missing, push those images again, or capture them with screenshot capture and push again.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="fix-group" id="account-billing">
+                <h3>Account &amp; billing</h3>
+                <div class="fix-list">
+                  <div class="fix-item">
+                    <h4>Google says &ldquo;This app hasn't been verified&rdquo;</h4>
+                    <ul>
+                      <li>This warning can appear while Pullhub is going through Google's app review.</li>
+                      <li>It does not mean Pullhub is unsafe.</li>
+                      <li>Only continue if you installed Pullhub from the official Pullhub source.</li>
+                      <li>To continue, click Advanced, then Go to Pullhub. Google may show the button as &ldquo;Go to Pullhub (unsafe)&rdquo; during this review period.</li>
+                      <li>Your Google files stay in your account; Pullhub only uses access to push images to Slides.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>Switching or signing out of a Google account</h4>
+                    <ul>
+                      <li>If you use multiple Google accounts, make sure Chrome, Google Slides, and Pullhub are using the same account.</li>
+                      <li>Sign out and sign in again if Pullhub seems connected to the wrong account.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>Paid but Pro didn't unlock</h4>
+                    <ul>
+                      <li>Reopen Pullhub and wait a moment for the license check to refresh.</li>
+                      <li>Restart Chrome if Pro still does not appear.</li>
+                      <li>Make sure you are using the same email you used for payment.</li>
+                      <li>If it still does not unlock, email support with your payment email and approximate purchase time.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="fix-group" id="sharing">
+                <h3>Sharing</h3>
+                <div class="fix-list">
+                  <div class="fix-item">
+                    <h4>A public link is not updating</h4>
+                    <ul>
+                      <li>A share link captures your board as it looks when you share it.</li>
+                      <li>Images you add later will not appear until you disable the link and share again.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>A shared board says "unavailable"</h4>
+                    <ul>
+                      <li>The board may be private, disabled, deleted, or the link may no longer be valid.</li>
+                      <li>If it is your board, open Pullhub and turn Public share back on to create a fresh link.</li>
+                      <li>If someone sent you the link, ask the board owner to enable sharing again or send a new link.</li>
+                    </ul>
+                    <p class="support-note">Still stuck? Email support with a screenshot.</p>
+                  </div>
+                </div>
+              </section>
+
+              <section class="fix-group" id="saving-export">
+                <h3>Saving &amp; export</h3>
+                <div class="fix-list">
+                  <div class="fix-item">
+                    <h4>Right-click "Save to Pullhub" is missing or images won't save</h4>
+                    <ul>
+                      <li>Reload the page after installing or updating Pullhub.</li>
+                      <li>The menu usually appears on regular webpage images, not on browser or system pages.</li>
+                      <li>Some Chrome pages, PDF pages, and restricted websites may block extensions.</li>
+                      <li>Try screenshot capture if a page blocks normal image saving.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>ZIP export is missing some images</h4>
+                    <ul>
+                      <li>Pullhub exports captured and downloadable images.</li>
+                      <li>Some websites block image downloads, so blocked images may be saved as web links instead of picture files.</li>
+                      <li>You can find those links in metadata.json inside the ZIP.</li>
+                      <li>To keep blocked images as picture files next time, capture them with screenshot capture first, then export.</li>
+                    </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>My boards disappeared</h4>
+                    <ul>
+                      <li>Pullhub boards are saved locally in your browser in v1.</li>
+                      <li>Clearing browser data or uninstalling the extension may remove local boards.</li>
+                      <li>If you exported a ZIP backup, import that ZIP to restore your board.</li>
+                      <li>If you did not export a ZIP backup, local boards usually cannot be recovered.</li>
+                    </ul>
+                    <p class="support-note">Still stuck? Email support with a screenshot.</p>
+                  </div>
+                  <div class="fix-item">
+                    <h4>What is the &ldquo;Pullhub Uploads&rdquo; folder in my Drive?</h4>
+                    <ul>
+                      <li>Pullhub may create this folder when a website blocks an image you push to Slides.</li>
+                      <li>Pullhub only uploads copies of images you push to Slides, not your other Drive files.</li>
+                      <li>These image copies may be shared by link so Google Slides can display them.</li>
+                      <li>You can delete the folder or files anytime, but older Slides may stop showing those images.</li>
+                    </ul>
+                  </div>
+                </div>
+              </section>
+            </div>
           </article>
-          <article class="doc-card">
-            <h2>Useful details</h2>
-            <ul>
-              <li>Your Chrome version and Pullhub version.</li>
-              <li>What you were trying to do.</li>
-              <li>The Google Slides URL type if relevant.</li>
-              <li>A screenshot of any error message.</li>
+
+          <article class="doc-card contact-card">
+            <h2>Contact support</h2>
+            <div class="contact-flow">
+              <div>
+                <p>Tried the quick fixes and still stuck? Email us and include the details below.</p>
+                <a class="btn btn--yellow mail-btn" href="mailto:support@debutt.studio">support@debutt.studio</a>
+              </div>
+              <div>
+                <h3>What to include</h3>
+                <ul class="support-checklist">
+                  <li>What you were trying to do</li>
+                  <li>Chrome version</li>
+                  <li>Pullhub version</li>
+                  <li>Google Slides URL type, if relevant</li>
+                  <li>Screenshot or screen recording</li>
+                  <li>Whether the issue happens on one site or every site</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="doc-card good-card">
+            <h2>Good to know</h2>
+            <ul class="good-list">
+              <li>Share links capture the board when you share. Re-share to update.</li>
+              <li>Some websites block image downloads.</li>
+              <li>Large boards may take longer to push to Slides.</li>
             </ul>
-          </article>
-          <article class="doc-card wide">
-            <h2>Common checks</h2>
-            <p>Make sure you are signed into Google, that the target Google Slides file is open or saved as the default target, and that Pullhub has the permissions requested by Chrome.</p>
           </article>
         </div>
       </section>
@@ -57,6 +385,7 @@
     <footer class="foot rule-b">
       <span>Built by debutt.studio</span>
       <span>support@debutt.studio</span>
+      <span class="support-foot-links"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></span>
     </footer>
   </div>
 </body>
