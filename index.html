@@ -395,7 +395,7 @@ img { display: block; max-width: 100%; }
 }
 .hero h1 .out { color: var(--ink); display: inline-block; position: relative; white-space: nowrap; }
 .hero h1 .arr { font-size: 0.42em; vertical-align: super; }
-.hero h1 .out .arr { position: absolute; left: calc(100% + 0.04em); top: 0.06em; }
+.hero h1 .out .arr { position: absolute; left: calc(100% - 0.16em); top: -0.03em; }
 .hero-sub { margin-top: 26px; font-size: clamp(16px,1.6vw,19px); line-height: 1.55; max-width: 44ch; color: var(--ink-soft); font-weight: 500; }
 .hero-cta { margin-top: 32px; display: flex; gap: 13px; flex-wrap: wrap; }
 .hero-meta { margin-top: 22px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
@@ -444,10 +444,21 @@ img { display: block; max-width: 100%; }
 @keyframes scroll-src { to { transform: translateX(-50%); } }
 
 /* ============ PROBLEM (ideas die between tabs) ============ */
-.problem { display: block; min-height: auto; }
-.problem-left { padding: clamp(34px,4vw,56px) clamp(24px,4vw,56px); display: flex; flex-direction: column; justify-content: center; }
+.problem { display: grid; grid-template-columns: minmax(0,1fr) minmax(300px,0.88fr); align-items: stretch; min-height: auto; }
+.problem-left { padding: clamp(24px,3vw,40px) clamp(24px,4vw,56px); display: flex; flex-direction: column; justify-content: center; }
 .problem-left h2 { font-size: clamp(40px,6vw,82px); line-height: 0.92; letter-spacing: -0.04em; font-weight: 900; margin-top: 22px; }
 .problem-left p { margin-top: 26px; font-size: clamp(16px,1.6vw,19px); line-height: 1.6; max-width: 36ch; color: var(--ink-soft); font-weight: 500; }
+.problem-visual { align-self: center; justify-self: center; width: min(100% - 44px, 430px); margin: clamp(22px,3vw,40px); border: var(--bd) solid var(--ink); border-radius: 14px; box-shadow: 7px 7px 0 0 var(--ink); background: var(--paper); overflow: hidden; transform: rotate(-1.1deg); }
+.problem-tabs { display: flex; gap: 6px; padding: 12px 12px 0; overflow: hidden; background: var(--bg); }
+.problem-tabs span { flex: 1; min-width: 0; font-family: var(--mono); font-size: 10.5px; font-weight: 700; color: var(--ink-soft); border: 1.5px solid var(--ink); border-bottom-width: var(--bd); border-radius: 8px 8px 3px 3px; background: var(--paper); padding: 6px 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+.problem-tabs span:nth-child(2) { background: var(--accent); color: var(--ink); transform: translateY(-2px); box-shadow: 2px 2px 0 0 var(--ink); }
+.problem-stack { display: grid; gap: 9px; padding: 18px; background: radial-gradient(circle at 1px 1px, oklch(0.2 0.01 65 / 0.06) 1px, transparent 0) 0 0 / 18px 18px; }
+.problem-stack span { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 8px; background: var(--paper); padding: 9px 11px; box-shadow: 3px 3px 0 0 var(--ink); }
+.problem-stack span::after { content: "manual"; color: var(--ink-soft); font-size: 9.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+.problem-stack span:nth-child(2) { transform: translateX(10px); }
+.problem-stack span:nth-child(3) { transform: translateX(-7px); }
+.problem-stack span:nth-child(4) { background: var(--bg); border-style: dashed; }
+.problem-note { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink); background: var(--accent); border-top: var(--bd) solid var(--ink); padding: 10px 14px; }
 /* mock browser — click references to save them to a board (the Pullhub way) */
 .problem-right { border-left: var(--bd) solid var(--line); position: relative; overflow: hidden; display: grid; place-items: center; padding: clamp(18px,2.6vw,32px); }
 .savewin {
@@ -513,26 +524,41 @@ img { display: block; max-width: 100%; }
   .board-thumb { animation: none; }
 }
 /* PULLHUB_INTERACTION_V2 END */
-@media (max-width: 920px){ .problem { grid-template-columns: 1fr; } .problem-right { border-left: none; border-top: var(--bd) solid var(--line); min-height: 440px; } }
+@media (max-width: 920px){
+  .problem { grid-template-columns: 1fr; }
+  .problem-visual { width: min(100% - 48px, 430px); margin-top: 0; }
+  .problem-right { border-left: none; border-top: var(--bd) solid var(--line); min-height: 440px; }
+}
+@media (max-width: 520px){
+  .problem-visual { width: min(100% - 32px, 430px); margin-bottom: 28px; transform: none; }
+  .problem-tabs span { font-size: 9.5px; padding-inline: 6px; }
+  .problem-stack { padding: 14px; }
+}
 
 /* ============ HOW IT WORKS ============ */
 .works-head { padding: clamp(48px,5.5vw,86px) clamp(24px,4vw,56px); display: flex; flex-direction: column; }
 .works-head .kicker { margin-bottom: clamp(22px,2.6vw,34px); }
-.works-head .wh-row { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: clamp(24px,4vw,64px); align-items: end; max-width: 1080px; }
+.works-head .wh-row { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(0,1fr); gap: clamp(18px,2.6vw,40px); align-items: end; max-width: 1080px; }
 .works-head h2 { font-size: clamp(34px,5vw,62px); line-height: 0.96; letter-spacing: -0.035em; font-weight: 900; }
 .works-head p { max-width: 40ch; color: var(--ink-soft); font-weight: 500; font-size: 16.5px; line-height: 1.55; padding-bottom: 8px; }
+.workflow-map { display: flex; flex-direction: column; gap: 14px; }
+.workflow-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.workflow-chain span { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 999px; background: var(--paper); padding: 7px 10px; box-shadow: 2px 2px 0 0 var(--ink); }
+.workflow-chain span:nth-child(even) { border: none; box-shadow: none; background: transparent; padding-inline: 0; color: var(--accent-deep); }
+.workflow-chain span:first-child { background: var(--accent); }
+.workflow-map p { margin: 0; }
 @media (max-width: 720px){ .works-head .wh-row { grid-template-columns: 1fr; gap: 16px; align-items: start; } }
 
-.step-row { display: grid; grid-template-columns: 0.74fr 1.26fr; align-items: stretch; }
+.step-row { display: grid; grid-template-columns: 1.26fr 0.74fr; align-items: stretch; }
 .step-row:nth-child(even) .step-copy { order: 2; border-left: var(--bd) solid var(--line); border-right: none; }
-.step-copy { padding: clamp(40px,4.6vw,68px); display: flex; flex-direction: column; justify-content: center; border-right: var(--bd) solid var(--line); }
+.step-copy { padding: clamp(28px,3vw,44px); display: flex; flex-direction: column; justify-content: center; border-right: var(--bd) solid var(--line); }
 .step-num { font-family: var(--mono); font-weight: 700; font-size: 14px; color: var(--accent-deep); display: inline-flex; align-items: center; gap: 10px; }
 .step-num .n { background: var(--accent); color: var(--ink); border: var(--bd) solid var(--ink); border-radius: 7px; padding: 3px 9px; }
-.step-copy h3 { font-size: clamp(28px,3.4vw,42px); line-height: 1.0; letter-spacing: -0.03em; font-weight: 900; margin-top: 22px; }
-.step-copy p { margin-top: 18px; color: var(--ink-soft); font-weight: 500; font-size: 16.5px; line-height: 1.6; max-width: 42ch; }
-.step-chips { margin-top: 28px; display: flex; gap: 9px; flex-wrap: wrap; }
+.step-copy h3 { font-size: clamp(28px,3.4vw,42px); line-height: 1.0; letter-spacing: -0.03em; font-weight: 900; margin-top: 16px; }
+.step-copy p { margin-top: 14px; color: var(--ink-soft); font-weight: 500; font-size: 16.5px; line-height: 1.6; max-width: 42ch; }
+.step-chips { margin-top: 22px; display: flex; gap: 9px; flex-wrap: wrap; }
 .step-chips .c { font-family: var(--mono); font-size: 12.5px; font-weight: 700; border: var(--bd) solid var(--ink); border-radius: 8px; padding: 7px 11px; background: var(--paper); }
-.step-media { padding: clamp(14px,1.8vw,26px); display: grid; place-items: center; background:
+.step-media { padding: clamp(10px,1.1vw,16px); display: grid; place-items: center; background:
   radial-gradient(circle at 1px 1px, oklch(0.2 0.01 65 / 0.06) 1px, transparent 0) 0 0 / 22px 22px; }
 .gif-slot {
   width: 100%; max-width: none; aspect-ratio: 16/10; border: var(--bd) solid var(--ink);
@@ -560,7 +586,7 @@ img { display: block; max-width: 100%; }
 .gif-slot .demo-poster,
 .demo-slot .demo-poster { display: none; }
 .step-media .gif-slot { aspect-ratio: 3/4; width: 350px; max-width: 100%; }
-.step-media .demo-slot { aspect-ratio: 16/10; width: min(100%, 680px); max-width: 100%; }
+.step-media .demo-slot { aspect-ratio: 16/10; width: min(100%, 820px); max-width: 100%; }
 /* Future demos:
    assets/demos/01-pull.webm / .mp4 / .jpeg
    assets/demos/02-save.webm / .mp4 / .jpeg
@@ -583,16 +609,29 @@ img { display: block; max-width: 100%; }
   .demo-slot .demo-poster { display: block; }
 }
 
-/* extra tools band */
-.tools { display: grid; grid-template-columns: 1fr 1fr; }
-.tool { padding: clamp(30px,3.5vw,48px); display: flex; flex-direction: column; min-width: 0; }
-.tool + .tool { border-left: var(--bd) solid var(--line); }
-.tool h4 { font-size: clamp(22px,2.4vw,30px); font-weight: 900; letter-spacing: -0.02em; }
+/* integrated handoff */
+.handoff-section { display: grid; grid-template-columns: minmax(260px,0.72fr) minmax(0,1.28fr); gap: clamp(20px,3vw,42px); padding: clamp(30px,3.6vw,52px) clamp(24px,4vw,56px); align-items: stretch; }
+.handoff-intro { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+.handoff-intro .kicker { margin-bottom: clamp(14px,1.8vw,22px); }
+.handoff-intro h2 { font-size: clamp(34px,4.8vw,58px); line-height: 0.96; letter-spacing: -0.035em; font-weight: 900; }
+.handoff-intro p { margin-top: 18px; max-width: 31ch; color: var(--ink-soft); font-weight: 500; font-size: 16.5px; line-height: 1.55; }
+.handoff-outputs { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: clamp(16px,2vw,24px); align-items: stretch; min-width: 0; }
+.handoff-card { border: var(--bd) solid var(--ink); border-radius: 14px; box-shadow: 7px 7px 0 0 var(--ink); background: var(--paper); padding: clamp(20px,2.4vw,30px); display: flex; flex-direction: column; min-width: 0; }
+.handoff-label { align-self: flex-start; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); background: var(--accent); border: 1.5px solid var(--ink); border-radius: 999px; padding: 5px 9px; margin-bottom: 14px; box-shadow: 2px 2px 0 0 var(--ink); }
+.handoff-card:nth-child(2) .handoff-label { background: var(--paper); }
+.handoff-card h4 { font-size: clamp(22px,2.4vw,30px); font-weight: 900; letter-spacing: -0.02em; }
+.handoff-card p { margin-top: 10px; color: var(--ink-soft); font-weight: 500; font-size: 15.5px; line-height: 1.5; max-width: 38ch; min-height: 4.5em; }
+.handoff-card .mock { margin-top: 26px; width: 100%; max-width: none; box-sizing: border-box; }
 .tool-tag { display: inline-flex; vertical-align: middle; margin-left: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--paper); background: var(--ink); border-radius: 999px; padding: 3px 8px; }
-.tool p { margin-top: 10px; color: var(--ink-soft); font-weight: 500; font-size: 15.5px; line-height: 1.5; max-width: 38ch; min-height: 4.5em; }
-.tool .gif-slot,
-.tool .demo-slot { margin-top: 26px; aspect-ratio: 3/4; width: 100%; max-width: 300px; box-sizing: border-box; }
-@media (max-width: 760px){ .tools { grid-template-columns: 1fr; } .tool + .tool { border-left: none; border-top: var(--bd) solid var(--line); } }
+@media (max-width: 920px){
+  .handoff-section { grid-template-columns: 1fr; gap: 22px; }
+  .handoff-intro { justify-content: flex-start; }
+}
+@media (max-width: 760px){
+  .handoff-outputs { grid-template-columns: 1fr; }
+  .handoff-card + .handoff-card { margin-top: 4px; }
+  .handoff-card p { min-height: 0; }
+}
 
 /* ============ HOW IT WORKS — designed step & tool mocks ============ */
 .mock { width: 100%; max-width: 560px; background: var(--paper); border: var(--bd) solid var(--ink); border-radius: 14px; box-shadow: 8px 8px 0 0 var(--ink); overflow: hidden; }
@@ -617,7 +656,7 @@ img { display: block; max-width: 100%; }
 
 /* 02 — save to a board */
 .save-mock { max-width: 430px; }
-.step-row--save { grid-template-columns: 0.98fr 1.02fr; }
+.step-row--save { grid-template-columns: 0.74fr 1.26fr; }
 @media (max-width: 860px){ .step-row--save { grid-template-columns: 1fr; } }
 .save-head { display: flex; align-items: center; gap: 12px; padding: 17px 20px; border-bottom: var(--bd) solid var(--ink); }
 .save-head .thumb { width: 48px; height: 48px; border-radius: 9px; border: var(--bd) solid var(--ink); flex: none; background: repeating-linear-gradient(45deg, oklch(0.72 0.17 45) 0 8px, oklch(0.8 0.13 55) 8px 16px); }
@@ -691,8 +730,6 @@ img { display: block; max-width: 100%; }
 .zr .zt { width: 20px; height: 20px; border-radius: 4px; border: 1.5px solid var(--ink); flex: none; }
 .zr em { margin-left: auto; font-style: normal; color: var(--ink-soft); }
 .zip-dl { margin: 6px 16px 16px; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--ink); background: var(--accent); border: var(--bd) solid var(--ink); border-radius: 10px; padding: 11px; box-shadow: 4px 4px 0 0 var(--ink); display: flex; align-items: center; justify-content: center; gap: 6px; }
-
-.tool .mock { margin-top: 24px; }
 
 /* ============ BOARDS (dark) ============ */
 .boards { background: var(--ink); color: var(--bg); display: grid; grid-template-columns: 1.05fr 0.95fr; }
@@ -935,6 +972,20 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <h2>Ideas die<br>between tabs.</h2>
       <p>Screenshots, copied URLs, downloads, repeat. Pullhub keeps references moving straight into your board.</p>
     </div>
+    <div class="problem-visual" aria-hidden="true">
+      <div class="problem-tabs">
+        <span>tab-17</span>
+        <span>copy-url</span>
+        <span>download</span>
+      </div>
+      <div class="problem-stack">
+        <span>Screenshot.png</span>
+        <span>Copied URL</span>
+        <span>Downloads folder</span>
+        <span>Blank slide</span>
+      </div>
+      <div class="problem-note">focus lost between tabs</div>
+    </div>
   </section>
 
   <!-- HOW IT WORKS -->
@@ -943,7 +994,16 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <span class="kicker"><span class="bar" style="width:26px;height:3px;background:var(--accent);display:inline-block"></span> How it works</span>
       <div class="wh-row">
         <h2>Three moves.<br>Zero busywork.</h2>
-        <p>From saved reference to finished slide, Pullhub handles the dragging, copying and resizing.</p>
+        <div class="workflow-map">
+          <div class="workflow-chain">
+            <span>01 Pull</span>
+            <span>→</span>
+            <span>02 Save</span>
+            <span>→</span>
+            <span>03 Slide</span>
+          </div>
+          <p>From saved reference to finished slide, Pullhub handles the dragging, copying and resizing.</p>
+        </div>
       </div>
     </div>
 
@@ -1002,39 +1062,41 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
     </div>
 
     <!-- extra tools -->
-    <div class="works-head rule-b">
-      <span class="kicker"><span class="bar" style="width:26px;height:3px;background:var(--accent);display:inline-block"></span> Step 04 · Hand it off</span>
-      <div class="wh-row">
+    <div class="handoff-section rule-b">
+      <div class="handoff-intro">
+        <span class="kicker"><span class="bar" style="width:26px;height:3px;background:var(--accent);display:inline-block"></span> Step 04 · Hand it off</span>
         <h2>Board's ready?<br>Hand it off two ways.</h2>
         <p>A link for people to look. A ZIP for files to keep.</p>
       </div>
-    </div>
-    <div class="tools rule-b">
-      <div class="tool" data-comment-anchor="0fa74fc91b-div">
-        <h4>Share &amp; collaborate <span class="tool-tag mono">Pro</span></h4>
-        <p data-comment-anchor="3a209eb8f8-p">Generate a view-only link for any board. Clients and teammates open it in the browser — no account, no install.</p>
-        <div class="mock share-mock">
-          <div class="share-top">
-            <span class="ic">🔗</span>
-            <div><div class="t">Rebrand · moodboard</div><div class="s">Anyone with the link can view</div></div>
+      <div class="handoff-outputs">
+        <div class="handoff-card" data-comment-anchor="0fa74fc91b-div">
+          <span class="handoff-label">Link to look</span>
+          <h4>Share &amp; collaborate <span class="tool-tag mono">Pro</span></h4>
+          <p data-comment-anchor="3a209eb8f8-p">Generate a view-only link for any board. Clients and teammates open it in the browser — no account, no install.</p>
+          <div class="mock share-mock">
+            <div class="share-top">
+              <span class="ic">🔗</span>
+              <div><div class="t">Rebrand · moodboard</div><div class="s">Anyone with the link can view</div></div>
+            </div>
+            <div class="link-row"><span class="url">debutt.studio/boards/rebrand</span><button class="cp">Copy</button></div>
           </div>
-          <div class="link-row"><span class="url">debutt.studio/boards/rebrand</span><button class="cp">Copy</button></div>
         </div>
-      </div>
-      <div class="tool" data-comment-anchor="a5e6cffb3a-div">
-        <h4>Export as ZIP</h4>
-        <p>Export the whole board as a ZIP of full-res files — for handoff, backup, or moving between machines.</p>
-        <div class="mock zip-mock">
-          <div class="zip-head">
-            <span class="ico">ZIP</span>
-            <div><div class="t">Rebrand-board.zip</div><div class="s">24 images · 18.4 MB</div></div>
+        <div class="handoff-card" data-comment-anchor="a5e6cffb3a-div">
+          <span class="handoff-label">ZIP to keep</span>
+          <h4>Export as ZIP</h4>
+          <p>Export the whole board as a ZIP of full-res files — for handoff, backup, or moving between machines.</p>
+          <div class="mock zip-mock">
+            <div class="zip-head">
+              <span class="ico">ZIP</span>
+              <div><div class="t">Rebrand-board.zip</div><div class="s">24 images · 18.4 MB</div></div>
+            </div>
+            <div class="zip-list">
+              <div class="zr"><span class="zt" style="background:repeating-linear-gradient(45deg,oklch(0.72 0.17 45) 0 5px,oklch(0.8 0.13 55) 5px 10px)"></span>ref-01.png <em>1.2 MB</em></div>
+              <div class="zr"><span class="zt" style="background:repeating-linear-gradient(0deg,oklch(0.55 0.13 250) 0 5px,oklch(0.64 0.1 255) 5px 10px)"></span>hero-shot.jpg <em>2.8 MB</em></div>
+              <div class="zr"><span class="zt" style="background:repeating-linear-gradient(90deg,oklch(0.6 0.16 350) 0 5px,oklch(0.7 0.12 350) 5px 10px)"></span>type-grid.png <em>0.9 MB</em></div>
+            </div>
+            <button class="zip-dl">Download ZIP ↓</button>
           </div>
-          <div class="zip-list">
-            <div class="zr"><span class="zt" style="background:repeating-linear-gradient(45deg,oklch(0.72 0.17 45) 0 5px,oklch(0.8 0.13 55) 5px 10px)"></span>ref-01.png <em>1.2 MB</em></div>
-            <div class="zr"><span class="zt" style="background:repeating-linear-gradient(0deg,oklch(0.55 0.13 250) 0 5px,oklch(0.64 0.1 255) 5px 10px)"></span>hero-shot.jpg <em>2.8 MB</em></div>
-            <div class="zr"><span class="zt" style="background:repeating-linear-gradient(90deg,oklch(0.6 0.16 350) 0 5px,oklch(0.7 0.12 350) 5px 10px)"></span>type-grid.png <em>0.9 MB</em></div>
-          </div>
-          <button class="zip-dl">Download ZIP ↓</button>
         </div>
       </div>
     </div>
