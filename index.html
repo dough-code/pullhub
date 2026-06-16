@@ -393,8 +393,9 @@ img { display: block; max-width: 100%; }
   content: ""; position: absolute; left: -4px; right: -4px; top: 14%; bottom: 12%; z-index: -1;
   background: var(--accent); transform: rotate(-1.4deg);
 }
-.hero h1 .out { color: var(--ink); }
+.hero h1 .out { color: var(--ink); display: inline-block; position: relative; white-space: nowrap; }
 .hero h1 .arr { font-size: 0.42em; vertical-align: super; }
+.hero h1 .out .arr { position: absolute; left: calc(100% + 0.04em); top: 0.06em; }
 .hero-sub { margin-top: 26px; font-size: clamp(16px,1.6vw,19px); line-height: 1.55; max-width: 44ch; color: var(--ink-soft); font-weight: 500; }
 .hero-cta { margin-top: 32px; display: flex; gap: 13px; flex-wrap: wrap; }
 .hero-meta { margin-top: 22px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
@@ -424,6 +425,11 @@ img { display: block; max-width: 100%; }
 .c-br { bottom: -18px; right: -26px; transform: rotate(-6deg); }
 .c-ml { top: 42%; left: -44px; transform: rotate(-9deg); }
 @media (max-width: 920px){ .hero { grid-template-columns: 1fr; } .hero-right { border-left: none; border-top: var(--bd) solid var(--line); } }
+@media (max-width: 560px) {
+  .hero h1 {
+    font-size: clamp(32px, 8.5vw, 44px);
+  }
+}
 @media (max-width: 520px){ .c-ml, .c-tr { display: none; } }
 
 /* ============ SOURCE ROW ============ */
@@ -438,8 +444,8 @@ img { display: block; max-width: 100%; }
 @keyframes scroll-src { to { transform: translateX(-50%); } }
 
 /* ============ PROBLEM (ideas die between tabs) ============ */
-.problem { display: grid; grid-template-columns: 0.95fr 1.05fr; min-height: 560px; }
-.problem-left { padding: clamp(40px,5vw,76px) clamp(24px,4vw,56px); display: flex; flex-direction: column; justify-content: center; }
+.problem { display: block; min-height: auto; }
+.problem-left { padding: clamp(34px,4vw,56px) clamp(24px,4vw,56px); display: flex; flex-direction: column; justify-content: center; }
 .problem-left h2 { font-size: clamp(40px,6vw,82px); line-height: 0.92; letter-spacing: -0.04em; font-weight: 900; margin-top: 22px; }
 .problem-left p { margin-top: 26px; font-size: clamp(16px,1.6vw,19px); line-height: 1.6; max-width: 36ch; color: var(--ink-soft); font-weight: 500; }
 /* mock browser — click references to save them to a board (the Pullhub way) */
@@ -532,23 +538,60 @@ img { display: block; max-width: 100%; }
   width: 100%; max-width: none; aspect-ratio: 16/10; border: var(--bd) solid var(--ink);
   border-radius: 14px; box-shadow: 7px 7px 0 0 var(--ink); overflow: hidden; background: var(--paper); position: relative;
 }
+.demo-slot {
+  width: 100%; max-width: none; aspect-ratio: 16/10; border: var(--bd) solid var(--ink);
+  border-radius: 14px; box-shadow: 7px 7px 0 0 var(--ink); overflow: hidden; background: var(--paper); position: relative;
+}
 .gif-slot::after {
   content: "● REC"; position: absolute; top: 10px; left: 10px; z-index: 3; pointer-events: none;
   font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--pop-3);
   background: var(--ink); padding: 3px 7px; border-radius: 5px;
 }
-.gif-slot image-slot { width: 100%; height: 100%; }
+.demo-slot::after {
+  content: "● DEMO"; position: absolute; top: 10px; left: 10px; z-index: 3; pointer-events: none;
+  font-family: var(--mono); font-size: 10px; font-weight: 700; color: var(--pop-3);
+  background: var(--ink); padding: 3px 7px; border-radius: 5px;
+}
+.gif-slot image-slot,
+.gif-slot img,
+.gif-slot video,
+.demo-slot img,
+.demo-slot video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gif-slot .demo-poster,
+.demo-slot .demo-poster { display: none; }
 .step-media .gif-slot { aspect-ratio: 3/4; width: 350px; max-width: 100%; }
+.step-media .demo-slot { aspect-ratio: 16/10; width: min(100%, 680px); max-width: 100%; }
+/* Future demos:
+   assets/demos/01-pull.webm / .mp4 / .jpeg
+   assets/demos/02-save.webm / .mp4 / .jpeg
+   assets/demos/03-slide.webm / .mp4 / .jpeg
+   Example:
+   <figure class="demo-slot">
+     <video muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
+       <source src="assets/demos/01-pull.webm" type="video/webm">
+       <source src="assets/demos/01-pull.mp4" type="video/mp4">
+     </video>
+     <img class="demo-poster" src="assets/demos/01-pull.jpeg" alt="">
+   </figure>
+*/
 @media (max-width: 860px){ .step-row, .step-row:nth-child(even) .step-copy { grid-template-columns: 1fr; order: 0; border-left: none; }
   .step-copy { border-right: none; border-bottom: var(--bd) solid var(--line); } }
+@media (prefers-reduced-motion: reduce) {
+  .gif-slot video,
+  .demo-slot video { display: none; }
+  .gif-slot .demo-poster,
+  .demo-slot .demo-poster { display: block; }
+}
 
 /* extra tools band */
 .tools { display: grid; grid-template-columns: 1fr 1fr; }
-.tool { padding: clamp(30px,3.5vw,48px); display: flex; flex-direction: column; }
+.tool { padding: clamp(30px,3.5vw,48px); display: flex; flex-direction: column; min-width: 0; }
 .tool + .tool { border-left: var(--bd) solid var(--line); }
 .tool h4 { font-size: clamp(22px,2.4vw,30px); font-weight: 900; letter-spacing: -0.02em; }
+.tool-tag { display: inline-flex; vertical-align: middle; margin-left: 8px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--paper); background: var(--ink); border-radius: 999px; padding: 3px 8px; }
 .tool p { margin-top: 10px; color: var(--ink-soft); font-weight: 500; font-size: 15.5px; line-height: 1.5; max-width: 38ch; min-height: 4.5em; }
-.tool .gif-slot { margin-top: 26px; aspect-ratio: 3/4; width: 100%; max-width: 300px; box-sizing: border-box; }
+.tool .gif-slot,
+.tool .demo-slot { margin-top: 26px; aspect-ratio: 3/4; width: 100%; max-width: 300px; box-sizing: border-box; }
 @media (max-width: 760px){ .tools { grid-template-columns: 1fr; } .tool + .tool { border-left: none; border-top: var(--bd) solid var(--line); } }
 
 /* ============ HOW IT WORKS — designed step & tool mocks ============ */
@@ -756,8 +799,8 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
 }
 .hero-right { background: var(--bg); position: relative; overflow: visible; padding: 0; min-height: 560px; border-left: none; display: grid; place-items: center; }
 /* product illustration — sits in the right column, nudged left to overlap the headline column a touch */
-.hero-art { display: block; width: min(116%, 612px); height: auto; transform: translateX(-14%); pointer-events: none; filter: drop-shadow(0 22px 38px oklch(0.25 0.05 75 / 0.20)); }
-@media (max-width: 920px){ .hero-right { min-height: 0; } .hero-art { height: auto; width: 92%; max-width: 92%; transform: none; margin: 18px auto 30px; } }
+.hero-art { display: block; width: min(120%, 640px); max-width: none; height: auto; transform: translateX(-12%); pointer-events: none; filter: drop-shadow(0 22px 38px oklch(0.25 0.05 75 / 0.20)); }
+@media (max-width: 920px){ .hero-right { min-height: 0; } .hero-art { height: auto; width: 96%; max-width: 96%; transform: none; margin: 18px auto 30px; } }
 
 /* single hero image with graphic elements layered IN FRONT */
 .hero-canvas { position: relative; width: 100%; max-width: 500px; aspect-ratio: 4/5; }
@@ -844,8 +887,8 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <section class="hero rule-b" data-layout="split" data-screen-label="Hero">
     <div class="hero-left">
       <span class="eyebrow"><span class="bk">&lt;/&gt;</span> Chrome extension · built for creatives</span>
-      <h1>Think <span class="hl">outside</span> <span class="out">the box.<span class="arr">↗</span></span></h1>
-      <p class="hero-sub">Save references. Organize boards. Push to Slides. Pullhub turns web inspiration into presentation-ready project boards.</p>
+      <h1>Save the web. <span class="out"><span class="hl">Push to Slides.</span><span class="arr">↗</span></span></h1>
+      <p class="hero-sub">Pullhub is the Chrome extension that collects web references into project boards — then drops a whole board into Google Slides, auto-laid-out.</p>
       <div class="hero-cta">
         <a class="btn btn--yellow" href="#">Add to Chrome free</a>
         <a class="btn btn--ghost" href="#how">See how it works ↓</a>
@@ -890,38 +933,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
     <div class="problem-left">
       <span class="kicker"><span class="bar" style="width:26px;height:3px;background:var(--accent);display:inline-block"></span> The problem</span>
       <h2>Ideas die<br>between tabs.</h2>
-      <p>Every copied URL costs focus. Pullhub keeps references moving straight into your board.</p>
-    </div>
-    <div class="problem-right" data-comment-anchor="96086472d2-div">
-      <!-- PULLHUB_INTERACTION_V2 START: problem mock hooks -->
-      <div class="savewin">
-        <div class="savewin-bar">
-          <span class="sw-dot"></span><span class="sw-dot"></span><span class="sw-dot"></span>
-          <span class="savewin-addr">🔒 <span class="tab-cycle" aria-label="pinterest.com/search/branding"></span></span>
-          <span class="savewin-tag">PULLHUB ON</span>
-        </div>
-        <div class="source-tabs" aria-hidden="true">
-          <span>Pinterest</span><span>Behance</span><span>Are.na</span><span>Figma</span>
-        </div>
-        <div class="savewin-body" data-comment-anchor="294ec3c0d2-div">
-          <div class="ref-grid">
-            <button class="ref-tile" style="--i:0;background:repeating-linear-gradient(35deg,oklch(0.7 0.17 45) 0 14px,oklch(0.78 0.13 55) 14px 28px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-            <button class="ref-tile" style="--i:1;background:repeating-linear-gradient(0deg,oklch(0.55 0.13 250) 0 10px,oklch(0.64 0.1 255) 10px 20px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-            <button class="ref-tile" style="--i:2;background:repeating-linear-gradient(90deg,oklch(0.85 0.04 95) 0 12px,oklch(0.9 0.02 95) 12px 24px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-            <button class="ref-tile" style="--i:3;background:repeating-linear-gradient(45deg,oklch(0.6 0.16 350) 0 13px,oklch(0.7 0.12 350) 13px 26px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-            <button class="ref-tile" style="--i:4;background:repeating-linear-gradient(135deg,oklch(0.68 0.15 155) 0 14px,oklch(0.76 0.11 155) 14px 28px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-            <button class="ref-tile" style="--i:5;background:repeating-linear-gradient(20deg,oklch(0.3 0.02 65) 0 12px,oklch(0.4 0.02 65) 12px 24px)"><span class="save-pill">+ Save to board</span><span class="check"><b>✓</b></span></button>
-          </div>
-        </div>
-        <div class="save-board">
-          <span class="sb-star">★</span>
-          <span class="sb-name">Rebrand · moodboard</span>
-          <span class="sb-dots"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-          <span class="sb-count" data-comment-anchor="4b8eca835b-div"><b>0</b> saved</span>
-          <span class="board-preview" aria-label="Saved reference previews"></span>
-        </div>
-      </div>
-      <!-- PULLHUB_INTERACTION_V2 END -->
+      <p>Screenshots, copied URLs, downloads, repeat. Pullhub keeps references moving straight into your board.</p>
     </div>
   </section>
 
@@ -943,15 +955,12 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <div class="step-chips"><span class="c">→ Right-click save</span><span class="c">→ Area capture</span></div>
       </div>
       <div class="step-media" data-comment-anchor="a38b1aa518-div">
-        <div class="mock pull-mock">
-          <div class="mock-bar"><span class="dot p"></span><span class="dot y"></span><span class="dot g"></span><span class="ttl">behance.net/gallery/4421</span><span class="pill">AREA CAPTURE</span></div>
-          <div class="pull-canvas">
-            <div class="marquee">
-              <span class="h tl"></span><span class="h tr"></span><span class="h bl"></span><span class="h br"></span>
-              <span class="dims">820 × 540</span>
-            </div>
-            <span class="pull-chip">Pulled to Pullhub ✓</span>
-          </div>
+        <div class="demo-slot">
+          <video muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
+            <source src="assets/demos/01-pull.webm" type="video/webm">
+            <source src="assets/demos/01-pull.mp4" type="video/mp4">
+          </video>
+          <img class="demo-poster" src="assets/demos/01-pull.jpeg" alt="">
         </div>
       </div>
     </div>
@@ -964,17 +973,12 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <div class="step-chips"><span class="c">→ Named boards</span><span class="c">→ Color codes</span></div>
       </div>
       <div class="step-media" data-comment-anchor="861c8c7b04-div">
-        <div class="mock save-mock">
-          <div class="save-head">
-            <span class="thumb logo" data-comment-anchor="56e81553ae-span"><img src="pullhub-icon.svg" alt="Pullhub"></span>
-            <div><div class="t" data-comment-anchor="de297e5ea5-div">My Boards</div><div class="s">Pick a board →</div></div>
-          </div>
-          <div class="board-pick">
-            <button class="bp"><span class="d" style="background:var(--accent)"></span><span class="bp-name">Art Direction</span><em>14</em></button>
-            <button class="bp is-on"><span class="d" style="background:var(--pop-2)"></span><span class="bp-name">Mood Board</span><em>+1</em><span class="ck">✓</span></button>
-            <button class="bp"><span class="d" style="background:var(--pop-1)"></span><span class="bp-name">References</span><em>9</em></button>
-            <button class="bp add">+ New board</button>
-          </div>
+        <div class="demo-slot">
+          <video muted loop playsinline preload="none" poster="assets/demos/02-save.jpeg">
+            <source src="assets/demos/02-save.webm" type="video/webm">
+            <source src="assets/demos/02-save.mp4" type="video/mp4">
+          </video>
+          <img class="demo-poster" src="assets/demos/02-save.jpeg" alt="">
         </div>
       </div>
     </div>
@@ -983,34 +987,32 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <div class="step-copy" data-comment-anchor="f104325911-div">
         <span class="step-num"><span class="n">03</span> SLIDE</span>
         <h3>Push to Google Slides</h3>
-        <p>One click sends a whole board to Slides with layout and formatting handled for you.</p>
-        <div class="step-chips"><span class="c">→ One-click sync</span><span class="c">→ Auto-layout</span></div>
+        <p>One click drops a whole board into Google Slides — onto the current slide, a slide you pick, or a brand-new one. Layout and resizing are automatic.</p>
+        <div class="step-chips"><span class="c">→ Current / selected / new slide</span><span class="c">→ Auto-layout</span></div>
       </div>
       <div class="step-media" data-comment-anchor="ed31d799e7-div">
-        <div class="mock slide-mock">
-          <div class="mock-bar"><span class="dot y"></span><span class="ttl">Rebrand deck · Google Slides</span><button class="pill slide-push-btn" type="button">PUSH BOARD</button></div>
-          <div class="slide-body">
-            <div class="filmstrip"><i class="on"></i><i></i><i></i><i></i></div>
-            <div class="slide-canvas">
-              <div class="slide-frame">
-                <span style="background:repeating-linear-gradient(45deg,oklch(0.72 0.17 45) 0 7px,oklch(0.8 0.13 55) 7px 14px)"></span>
-                <span style="background:repeating-linear-gradient(0deg,oklch(0.55 0.13 250) 0 6px,oklch(0.64 0.1 255) 6px 12px)"></span>
-                <span style="background:repeating-linear-gradient(90deg,oklch(0.85 0.04 95) 0 7px,oklch(0.9 0.02 95) 7px 14px)"></span>
-                <span style="background:repeating-linear-gradient(135deg,oklch(0.6 0.16 350) 0 7px,oklch(0.7 0.12 350) 7px 14px)"></span>
-                <span style="background:repeating-linear-gradient(20deg,oklch(0.68 0.15 155) 0 7px,oklch(0.76 0.11 155) 7px 14px)"></span>
-                <span style="background:repeating-linear-gradient(45deg,oklch(0.3 0.02 65) 0 7px,oklch(0.42 0.02 65) 7px 14px)"></span>
-              </div>
-            </div>
-          </div>
+        <div class="demo-slot">
+          <video muted loop playsinline preload="none" poster="assets/demos/03-slide.jpeg">
+            <source src="assets/demos/03-slide.webm" type="video/webm">
+            <source src="assets/demos/03-slide.mp4" type="video/mp4">
+          </video>
+          <img class="demo-poster" src="assets/demos/03-slide.jpeg" alt="">
         </div>
       </div>
     </div>
 
     <!-- extra tools -->
+    <div class="works-head rule-b">
+      <span class="kicker"><span class="bar" style="width:26px;height:3px;background:var(--accent);display:inline-block"></span> Step 04 · Hand it off</span>
+      <div class="wh-row">
+        <h2>Board's ready?<br>Hand it off two ways.</h2>
+        <p>A link for people to look. A ZIP for files to keep.</p>
+      </div>
+    </div>
     <div class="tools rule-b">
       <div class="tool" data-comment-anchor="0fa74fc91b-div">
-        <h4>Share &amp; collaborate</h4>
-        <p data-comment-anchor="3a209eb8f8-p">Generate a link for any board. Teammates and clients can view it instantly, no account needed.</p>
+        <h4>Share &amp; collaborate <span class="tool-tag mono">Pro</span></h4>
+        <p data-comment-anchor="3a209eb8f8-p">Generate a view-only link for any board. Clients and teammates open it in the browser — no account, no install.</p>
         <div class="mock share-mock">
           <div class="share-top">
             <span class="ic">🔗</span>
@@ -1021,7 +1023,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
       <div class="tool" data-comment-anchor="a5e6cffb3a-div">
         <h4>Export as ZIP</h4>
-        <p>Need the raw files? Download every image on a board as a single ZIP, ready to hand off.</p>
+        <p>Export the whole board as a ZIP of full-res files — for handoff, backup, or moving between machines.</p>
         <div class="mock zip-mock">
           <div class="zip-head">
             <span class="ico">ZIP</span>
@@ -1043,7 +1045,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
     <div class="boards-copy">
       <span class="kicker">Stackable boards</span>
       <h2>Boards that <em>never run out</em> of room.</h2>
-      <p>Every project gets its own open, stackable board. Collect freely, stack them as high as the idea goes, and share the whole thing with a link.</p>
+      <p>One board per project. Color-code by phase, reorder freely, and keep every reference in one place — unlimited boards on Pro.</p>
       <div class="boards-list">
         <div class="li"><b style="background:var(--accent)"></b> Unlimited, color-coded boards on Pro</div>
         <div class="li"><b style="background:var(--pop-2)"></b> Share with a link, or export as ZIP</div>
@@ -1118,7 +1120,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <div class="pnote">Everything you need to try it out.</div>
         <ul>
           <li><span class="tick">✓</span> Up to 4 boards</li>
-          <li><span class="tick">✓</span> 8 saved references</li>
+          <li><span class="tick">✓</span> 8 references to try the full flow</li>
           <li><span class="tick">✓</span> Push to Google Slides</li>
           <li><span class="tick">✓</span> ZIP export</li>
         </ul>
@@ -1198,6 +1200,43 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
 
 <!-- lightweight landing interactions -->
 <script src="assets/scripts/pullhub-demo-interactions.js"></script>
+
+<!-- demo video playback -->
+<script>
+(() => {
+  const videos = Array.from(document.querySelectorAll('.demo-slot video'));
+  if (!videos.length) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const pause = (video) => { try { video.pause(); } catch (_) {} };
+  const play = (video) => { video.play().catch(() => {}); };
+
+  videos.forEach((video) => {
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+  });
+
+  if (prefersReducedMotion.matches) {
+    videos.forEach(pause);
+    return;
+  }
+
+  if (!('IntersectionObserver' in window)) {
+    videos.forEach(play);
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) play(entry.target);
+      else pause(entry.target);
+    });
+  }, { threshold: 0.2 });
+
+  videos.forEach((video) => observer.observe(video));
+})();
+</script>
 
 
 
