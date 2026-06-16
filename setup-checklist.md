@@ -2,8 +2,10 @@
 
 ## Website
 - Publish `index.html`, `privacy.html`, `terms.html`, and `support.html`.
-- Use `debutt.studio` or a subpath/subdomain such as `debutt.studio/pullhub`.
-- Add the privacy policy URL to Chrome Web Store Developer Dashboard.
+- Use `debutt.studio`.
+- Add `https://debutt.studio/privacy.html` to Chrome Web Store Developer Dashboard.
+- Add `https://debutt.studio/support.html` as the support URL.
+- Add `https://debutt.studio/terms.html` where terms are requested or linked from listing/support materials.
 
 ## Landing Page Demo Freeze
 The Pullhub landing page demo/video section is integrated, deployed, and ready to freeze. Do not reopen the How-it-works demo section before launch unless a production bug is found.
@@ -88,14 +90,28 @@ Next steps:
 - Product name: Pullhub.
 - Trial: 14 days.
 - Recommended plans: USD 6.99 monthly, USD 60 annual.
-- If changing the ExtensionPay ID from `smart-reference`, verify migration/subscription continuity before changing code.
+- Production ExtensionPay ID in the extension package is `pullhub`.
 
 ## Chrome Web Store
-- Upload `pullhub-webstore.zip`.
+- Build the upload package with `scripts/package-webstore.sh`.
+- Upload `outputs/pullhub-webstore.zip`.
+- The package script uses an explicit production allowlist and excludes `.git`, `.DS_Store`, source maps, dev docs, stale launch artifacts, and non-production debris.
+- After packaging, compare the ZIP contents against the clean staging directory produced by the script.
 - Add store icon and screenshots.
 - Add homepage, privacy policy, and support links.
 - Fill data practices consistently with the privacy policy.
 - Explain why `<all_urls>` is needed for user-selected saving and capture.
+- Explain that the all-page content script supports Google Slides detection, user-initiated drag/drop, cursor capture, and optional floating widget behavior, and does not automatically collect page content.
+- Explain `storage` and `unlimitedStorage`: boards, screenshots, settings, account display state, and local backups are stored locally; unlimited storage prevents quota failures for local boards and captures.
+- Explain Google OAuth scopes:
+  - `presentations`: insert selected references and layouts into Google Slides.
+  - `drive.file`: create and manage Pullhub-created fallback files for Slides insertion.
+  - `drive.metadata`: locate and check metadata for the Pullhub Uploads folder and related Drive files used by the fallback workflow; not used to read Drive file contents.
+  - `userinfo.email`: show the signed-in account, connect account state to Pullhub access, and support Firebase sharing ownership.
+- Explain Drive fallback public-link behavior: when direct Slides insertion fails, Pullhub may upload a fallback image to the user's Drive and make that file readable by anyone with the link so Google Slides can render it.
+- Explain Firebase/Firestore: optional public board sharing stores a board snapshot for the public link.
+- Explain ExtensionPay/Stripe: trial, subscription, and Pro access management.
+- Explain `web_accessible_resources`: required for the optional pinned floating widget iframe to load the Pullhub popup and its local scripts/styles inside a webpage.
 
 ## Before Publish
 - Test Google sign-in with the final extension ID.
@@ -105,3 +121,12 @@ Next steps:
 - Test ZIP export/import.
 - Test paid/trial state.
 - Test board sharing if enabled.
+
+## Manual Google OAuth / CWS Console Checks
+- Confirm final Chrome Web Store extension ID.
+- Add authorized redirect URI: `https://<final-extension-id>.chromiumapp.org/`.
+- Confirm OAuth consent screen app name, homepage, privacy URL, support email, and authorized domain match Pullhub / debutt.studio.
+- Confirm whether `drive.metadata` triggers restricted-scope verification / CASA.
+- If restricted-scope verification blocks launch, fallback plan is to scope-reduce by removing the current/opened deck rename path that requires `drive.metadata`.
+- Confirm `<all_urls>`, `tabs`, and content script justifications are copied into the CWS permission justification fields.
+- Confirm upload ZIP checksum matches: `2394c24520e1a8824f2b591a16b84921c8aa0a1d175df5d6f3ac2b22f0a7a0d0`.
