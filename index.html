@@ -398,6 +398,7 @@ img { display: block; max-width: 100%; }
 .hero h1 .out .arr { position: absolute; left: calc(100% - 0.16em); top: -0.03em; }
 .hero-sub { margin-top: 26px; font-size: clamp(16px,1.6vw,19px); line-height: 1.55; max-width: 44ch; color: var(--ink-soft); font-weight: 500; }
 .hero-cta { margin-top: 32px; display: flex; gap: 13px; flex-wrap: wrap; }
+.hero-browser { margin-top: 14px; color: var(--ink-soft); font-size: 13px; font-weight: 600; }
 .hero-meta { margin-top: 22px; display: flex; gap: 18px; flex-wrap: wrap; font-size: 13px; color: var(--ink-soft); font-weight: 600; }
 .hero-meta span { display: inline-flex; align-items: center; gap: 7px; }
 .hero-meta b { color: var(--accent-deep); }
@@ -558,6 +559,8 @@ img { display: block; max-width: 100%; }
 .step-copy p { margin-top: 14px; color: var(--ink-soft); font-weight: 500; font-size: 16.5px; line-height: 1.6; max-width: 42ch; }
 .step-chips { margin-top: 22px; display: flex; gap: 9px; flex-wrap: wrap; }
 .step-chips .c { font-family: var(--mono); font-size: 12.5px; font-weight: 700; border: var(--bd) solid var(--ink); border-radius: 8px; padding: 7px 11px; background: var(--paper); }
+.step-fallback { margin-top: 14px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); max-width: 42ch; }
+.step-fallback .fb-tag { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: var(--accent); border: 1.5px solid var(--ink); border-radius: 999px; padding: 2px 7px; margin-right: 9px; }
 .step-media { padding: clamp(10px,1.1vw,16px); display: grid; place-items: center; background:
   radial-gradient(circle at 1px 1px, oklch(0.2 0.01 65 / 0.06) 1px, transparent 0) 0 0 / 22px 22px; }
 .gif-slot {
@@ -741,41 +744,31 @@ img { display: block; max-width: 100%; }
 .boards-list { margin-top: 26px; display: flex; flex-direction: column; gap: 13px; }
 .boards-list .li { display: flex; align-items: center; gap: 13px; font-weight: 600; font-size: 16px; }
 .boards-list .li b { width: 13px; height: 13px; border-radius: 4px; flex: none; }
-.boards-stage { border-left: var(--bd) solid oklch(0.35 0.01 85); position: relative; overflow: hidden; min-height: 540px; }
-.board-card { --bc: var(--accent); position: absolute; width: 274px; height: 228px; border: var(--bd) solid var(--ink); border-radius: 15px; background: var(--paper); box-shadow: 8px 8px 0 0 oklch(0.04 0 0); padding: 13px; display: flex; flex-direction: column; gap: 8px; }
-.board-card .bc-head { display: flex; align-items: center; justify-content: space-between; }
-.board-card .bc-name { display: flex; align-items: center; gap: 9px; font-weight: 800; font-size: 14.5px; color: var(--ink); }
-.board-card .swatch { width: 13px; height: 13px; border-radius: 4px; border: var(--bd) solid var(--ink); background: var(--bc); }
-.board-card .count { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); font-weight: 700; }
-.board-card .thumbs { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; flex: 1; min-height: 64px; }
-.board-card .thumbs i { border-radius: 6px; border: var(--bd) solid var(--ink); background: repeating-linear-gradient(45deg, oklch(0.88 0.02 85) 0 6px, oklch(0.93 0.012 85) 6px 12px); }
-.board-card { cursor: grab; touch-action: none; user-select: none; transition: box-shadow .12s; }
-.board-card:active { cursor: grabbing; }
-.drag-hint { position: absolute; top: 20px; right: 22px; z-index: 8; font-family: var(--mono); font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; color: var(--ink); background: var(--accent); border: var(--bd) solid var(--ink); border-radius: 12px; padding: 9px 14px; display: inline-flex; align-items: center; gap: 9px; box-shadow: 3px 3px 0 0 oklch(0.04 0 0); pointer-events: none; max-width: 230px; line-height: 1.35; }
-.drag-hint .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ink); animation: pulse 1.4s ease-in-out infinite; flex: none; }
-.tidy-btn { position: absolute; bottom: 22px; right: 22px; z-index: 9; font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink); background: var(--accent); border: var(--bd) solid var(--ink); border-radius: 10px; padding: 10px 16px; cursor: pointer; box-shadow: 3px 3px 0 0 oklch(0.04 0 0); transition: transform .12s, box-shadow .12s; }
-.tidy-btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 0 oklch(0.04 0 0); }
-.tidy-btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 0 oklch(0.04 0 0); }
-/* per-board actions: recolor · share link · push to Slides */
-.bc-actions { margin-top: 1px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.bc-color { display: flex; gap: 5px; }
-.bc-color button { width: 16px; height: 16px; border-radius: 5px; border: 2px solid var(--ink); cursor: pointer; padding: 0; transition: transform .1s; }
-.bc-color button:hover { transform: scale(1.16); }
-.bc-color button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--ink); }
-.bc-do { display: flex; gap: 6px; }
-.bc-btn { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.01em; color: var(--ink); border: 2px solid var(--ink); border-radius: 7px; background: var(--bg); padding: 5px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; transition: background .12s, transform .1s; }
-.bc-btn:hover { background: color-mix(in oklch, var(--accent) 45%, var(--bg)); }
-.bc-btn:active { transform: translateY(1px); }
-.bc-btn.is-done { background: var(--accent); }
-.board-toast { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(8px); z-index: 12; opacity: 0; pointer-events: none; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--bg); background: var(--ink); border: 2px solid var(--accent); border-radius: 10px; padding: 9px 15px; transition: opacity .2s, transform .2s; white-space: nowrap; box-shadow: 4px 4px 0 0 oklch(0.04 0 0); }
-.board-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-@keyframes pulse { 0%,100%{ opacity: 1; } 50%{ opacity: 0.3; } }
-.board-card.c1 { --bc: var(--accent); top: 38px; left: 6%; transform: rotate(-7deg); z-index: 3; }
-.board-card.c2 { --bc: var(--pop-2); top: 156px; left: 34%; transform: rotate(5deg); z-index: 2; }
-.board-card.c3 { --bc: var(--pop-1); top: 274px; left: 12%; transform: rotate(-3deg); z-index: 1; }
-.board-card .thumbs i:nth-child(odd){ background: repeating-linear-gradient(45deg, color-mix(in oklch, var(--bc) 58%, oklch(0.98 0 0)) 0 6px, color-mix(in oklch, var(--bc) 26%, oklch(0.98 0 0)) 6px 12px); }
-@media (max-width: 920px){ .boards { grid-template-columns: 1fr; } .boards-stage { border-left: none; border-top: var(--bd) solid oklch(0.35 0.01 85); min-height: 540px; } }
-@media (max-width: 480px){ .board-card { width: 220px; height: 170px; } .board-card.c2 { left: 26%; } }
+.boards-stage { border-left: var(--bd) solid oklch(0.35 0.01 85); position: relative; overflow: hidden; min-height: 540px; display: grid; place-items: center; padding: clamp(28px,4vw,54px); }
+.boards-demo { position: relative; width: min(100%, 520px); min-height: 380px; display: grid; place-items: center; }
+.board-preview-panel { --bc: var(--pop-2); position: absolute; right: 8px; bottom: 22px; width: min(64%, 310px); border: var(--bd) solid var(--ink); border-radius: 15px; background: var(--paper); box-shadow: 8px 8px 0 0 oklch(0.04 0 0); padding: 15px; transform: rotate(3deg); z-index: 1; }
+.preview-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; color: var(--ink); }
+.preview-title { font-weight: 900; font-size: 17px; letter-spacing: -0.02em; }
+.preview-count { font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+.preview-thumbs { margin-top: 14px; display: grid; grid-template-columns: repeat(3,1fr); gap: 7px; }
+.preview-thumbs i { aspect-ratio: 1; border: var(--bd) solid var(--ink); border-radius: 7px; background: repeating-linear-gradient(45deg, color-mix(in oklch, var(--bc) 58%, oklch(0.98 0 0)) 0 6px, color-mix(in oklch, var(--bc) 26%, oklch(0.98 0 0)) 6px 12px); }
+.board-picker-card { position: relative; z-index: 2; width: min(100%, 330px); border: var(--bd) solid var(--ink); border-radius: 15px; background: var(--paper); box-shadow: 8px 8px 0 0 oklch(0.04 0 0); color: var(--ink); overflow: hidden; transform: rotate(-2deg); }
+.picker-top { display: flex; align-items: center; gap: 11px; padding: 15px 17px; border-bottom: var(--bd) solid var(--ink); background: var(--bg); }
+.picker-logo { width: 34px; height: 34px; border: 1.5px solid var(--ink); border-radius: 8px; background: var(--paper); padding: 5px; flex: none; }
+.picker-title { font-weight: 900; font-size: 18px; letter-spacing: -0.02em; }
+.picker-sub { margin-top: 1px; font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--ink-soft); }
+.picker-list { display: flex; flex-direction: column; gap: 8px; padding: 13px; background: radial-gradient(circle at 1px 1px, oklch(0.2 0.01 65 / 0.06) 1px, transparent 0) 0 0 / 18px 18px; }
+.board-row { width: 100%; display: flex; align-items: center; gap: 10px; border: var(--bd) solid var(--ink); border-radius: 10px; background: var(--paper); color: var(--ink); padding: 11px 13px; font: inherit; font-weight: 800; text-align: left; box-shadow: none; }
+.board-row:not([aria-disabled="true"]) { cursor: pointer; }
+.board-row[aria-pressed="true"] { background: var(--accent); box-shadow: 4px 4px 0 0 var(--ink); }
+.board-row:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; }
+.board-row-dot { width: 13px; height: 13px; border-radius: 4px; border: 1.5px solid var(--ink); flex: none; background: var(--bc); }
+.board-row-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.board-row-count { margin-left: auto; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink-soft); }
+.board-row[aria-pressed="true"] .board-row-count { color: var(--ink); }
+.board-row-new { color: var(--ink-soft); border-style: dashed; justify-content: center; font-family: var(--mono); font-size: 12.5px; font-weight: 700; background: color-mix(in oklch, var(--paper) 74%, var(--bg)); }
+@media (max-width: 920px){ .boards { grid-template-columns: 1fr; } .boards-stage { border-left: none; border-top: var(--bd) solid oklch(0.35 0.01 85); min-height: 520px; } }
+@media (max-width: 560px){ .boards-demo { min-height: 460px; align-items: start; } .board-picker-card { transform: none; } .board-preview-panel { width: min(92%, 310px); right: 0; left: 8%; bottom: 18px; transform: rotate(2deg); } }
 
 /* ============ PRICING ============ */
 .pricing-head { padding: clamp(40px,5vw,72px) clamp(24px,4vw,56px) 0; }
@@ -798,6 +791,24 @@ img { display: block; max-width: 100%; }
 .plan.pro .btn { box-shadow: 4px 4px 0 0 var(--ink); }
 .plan .flag { position: absolute; top: -15px; right: 24px; background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 6px 13px; border-radius: 999px; transform: rotate(3deg); }
 @media (max-width: 720px){ .plans { grid-template-columns: 1fr; } }
+
+/* ============ FAQ ============ */
+.faq { padding: clamp(38px,4.8vw,68px) clamp(24px,4vw,56px); }
+.faq h2 { font-size: clamp(30px,4vw,48px); line-height: 1; letter-spacing: -0.035em; font-weight: 900; }
+.faq h2,
+.faq-list,
+.faq-link { max-width: 940px; margin-inline: auto; }
+.faq-list { margin-top: 20px; border-top: var(--bd) solid var(--ink); }
+.faq-item { border-bottom: var(--bd) solid var(--ink); }
+.faq-item summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 18px; width: 100%; padding: 14px 0; font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after { content: "+"; font-family: var(--mono); font-size: 20px; font-weight: 700; color: var(--accent-deep); flex: none; }
+.faq-item[open] summary::after { content: "-"; }
+.faq-item summary:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; border-radius: 6px; }
+.faq-item p { color: var(--ink-soft); font-size: 15.5px; line-height: 1.5; font-weight: 500; padding: 0 0 16px; max-width: 700px; }
+.faq-link { display: flex; margin-top: 18px; font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--ink); }
+.faq-link:hover { color: var(--accent-deep); }
+@media (max-width: 720px){ .faq-item summary { gap: 12px; } }
 
 /* ============ FINAL CTA + FOOTER ============ */
 .cta-band { position: relative; overflow: hidden; text-align: center; padding: clamp(56px,7vw,104px) 24px; }
@@ -910,11 +921,12 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <!-- NAV -->
   <nav class="nav rule-b">
     <div class="nav-inner pad">
-      <a class="brand" href="#"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
+      <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
       <div class="nav-links">
         <a class="l" href="#how">How it works</a>
         <a class="l" href="#boards">Boards</a>
         <a class="l" href="#pricing">Pricing</a>
+        <!-- TODO: Replace CTA href="#" with the published Chrome Web Store URL before launch. -->
         <div class="nav-cta"><a class="btn btn--yellow" href="#">Add to Chrome free</a></div>
       </div>
     </div>
@@ -927,9 +939,11 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <h1>Save the web. <span class="out"><span class="hl">Push to Slides.</span><span class="arr">↗</span></span></h1>
       <p class="hero-sub">Pullhub is the Chrome extension that collects web references into project boards — then drops a whole board into Google Slides, auto-laid-out.</p>
       <div class="hero-cta">
+        <!-- TODO: Replace CTA href="#" with the published Chrome Web Store URL before launch. -->
         <a class="btn btn--yellow" href="#">Add to Chrome free</a>
         <a class="btn btn--ghost" href="#how">See how it works ↓</a>
       </div>
+      <p class="hero-browser">Works in Chrome and most Chromium-based browsers.</p>
       <div class="hero-meta">
         <span><b>✓</b> Free forever plan</span>
         <span><b>✓</b> No credit card</span>
@@ -1011,12 +1025,13 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <div class="step-copy" data-comment-anchor="e012ca24af-div">
         <span class="step-num"><span class="n">01</span> PULL</span>
         <h3>Pull anything off the web</h3>
-        <p>Right-click to save any image instantly, or use area capture to crop the exact slice you want.</p>
-        <div class="step-chips"><span class="c">→ Right-click save</span><span class="c">→ Area capture</span></div>
+        <p>Right-click an image and save it straight into a board — instant, no busywork.</p>
+        <div class="step-chips"><span class="c">→ Right-click save</span></div>
+        <p class="step-fallback"><span class="fb-tag">Fallback</span>When direct save is not enough, area capture crops the exact slice and drops it on a board.</p>
       </div>
       <div class="step-media" data-comment-anchor="a38b1aa518-div">
         <div class="demo-slot">
-          <video muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
+          <video autoplay muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
             <source src="assets/demos/01-pull.webm" type="video/webm">
             <source src="assets/demos/01-pull.mp4" type="video/mp4">
           </video>
@@ -1034,7 +1049,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
       <div class="step-media" data-comment-anchor="861c8c7b04-div">
         <div class="demo-slot">
-          <video muted loop playsinline preload="none" poster="assets/demos/02-save.jpeg">
+          <video autoplay muted loop playsinline preload="none" poster="assets/demos/02-save.jpeg">
             <source src="assets/demos/02-save.webm" type="video/webm">
             <source src="assets/demos/02-save.mp4" type="video/mp4">
           </video>
@@ -1047,12 +1062,12 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <div class="step-copy" data-comment-anchor="f104325911-div">
         <span class="step-num"><span class="n">03</span> SLIDE</span>
         <h3>Push to Google Slides</h3>
-        <p>One click drops a whole board into Google Slides — onto the current slide, a slide you pick, or a brand-new one. Layout and resizing are automatic.</p>
-        <div class="step-chips"><span class="c">→ Current / selected / new slide</span><span class="c">→ Auto-layout</span></div>
+        <p>One click drops a whole board into Google Slides — onto the current slide, a slide you pick, or a brand-new one. Layout and resizing are automatic, and pushed images can keep a link back to their source page.</p>
+        <div class="step-chips"><span class="c">→ Current / selected / new slide</span><span class="c">→ Auto-layout</span><span class="c">→ Keeps source links</span></div>
       </div>
       <div class="step-media" data-comment-anchor="ed31d799e7-div">
         <div class="demo-slot">
-          <video muted loop playsinline preload="none" poster="assets/demos/03-slide.jpeg">
+          <video autoplay muted loop playsinline preload="none" poster="assets/demos/03-slide.jpeg">
             <source src="assets/demos/03-slide.webm" type="video/webm">
             <source src="assets/demos/03-slide.mp4" type="video/mp4">
           </video>
@@ -1072,13 +1087,13 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <div class="handoff-card" data-comment-anchor="0fa74fc91b-div">
           <span class="handoff-label">Link to look</span>
           <h4>Share &amp; collaborate <span class="tool-tag mono">Pro</span></h4>
-          <p data-comment-anchor="3a209eb8f8-p">Generate a view-only link for any board. Clients and teammates open it in the browser — no account, no install.</p>
+          <p data-comment-anchor="3a209eb8f8-p">Generate a view-only link for any board. Clients and teammates open it in the browser — no account, no install. Share links are snapshots — re-share to publish updates.</p>
           <div class="mock share-mock">
             <div class="share-top">
               <span class="ic">🔗</span>
               <div><div class="t">Rebrand · moodboard</div><div class="s">Anyone with the link can view</div></div>
             </div>
-            <div class="link-row"><span class="url">debutt.studio/boards/rebrand</span><button class="cp">Copy</button></div>
+            <div class="link-row"><span class="url">debutt.studio/boards/rebrand</span><span class="cp" aria-hidden="true">Copy</span></div>
           </div>
         </div>
         <div class="handoff-card" data-comment-anchor="a5e6cffb3a-div">
@@ -1095,7 +1110,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
               <div class="zr"><span class="zt" style="background:repeating-linear-gradient(0deg,oklch(0.55 0.13 250) 0 5px,oklch(0.64 0.1 255) 5px 10px)"></span>hero-shot.jpg <em>2.8 MB</em></div>
               <div class="zr"><span class="zt" style="background:repeating-linear-gradient(90deg,oklch(0.6 0.16 350) 0 5px,oklch(0.7 0.12 350) 5px 10px)"></span>type-grid.png <em>0.9 MB</em></div>
             </div>
-            <button class="zip-dl">Download ZIP ↓</button>
+            <span class="zip-dl" aria-hidden="true">Download ZIP ↓</span>
           </div>
         </div>
       </div>
@@ -1105,64 +1120,51 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <!-- BOARDS (dark) -->
   <section class="boards rule-b" id="boards" data-screen-label="Boards">
     <div class="boards-copy">
-      <span class="kicker">Stackable boards</span>
-      <h2>Boards that <em>never run out</em> of room.</h2>
-      <p>One board per project. Color-code by phase, reorder freely, and keep every reference in one place — unlimited boards on Pro.</p>
+      <span class="kicker">Your boards</span>
+      <h2>Boards for every project phase.</h2>
+      <p>Group references by project, phase, or direction. Reorder freely, color-code boards, use Pro public sharing links, export a ZIP, or push selected references to Slides.</p>
       <div class="boards-list">
-        <div class="li"><b style="background:var(--accent)"></b> Unlimited, color-coded boards on Pro</div>
-        <div class="li"><b style="background:var(--pop-2)"></b> Share with a link, or export as ZIP</div>
-        <div class="li"><b style="background:var(--pop-1)"></b> Everything syncs to Slides in a click</div>
+        <div class="li"><b style="background:var(--accent)"></b> Color-code boards by project or phase</div>
+        <div class="li"><b style="background:var(--pop-2)"></b> Public sharing links on Pro, or export as ZIP</div>
+        <div class="li"><b style="background:var(--pop-1)"></b> Push selected references to Slides</div>
       </div>
     </div>
-    <div class="boards-stage" data-comment-anchor="d052eeb7aa-div">
-      <span class="drag-hint"><span class="dot"></span>Drag to arrange, recolor, share or push any board to Slides</span>
-      <button class="tidy-btn">Tidy ↗</button>
-      <div class="board-toast">Done</div>
-      <div class="board-card c1" data-name="Rebrand">
-        <div class="bc-head"><div class="bc-name"><span class="swatch"></span>Rebrand · moodboard</div><span class="count">24</span></div>
-        <div class="thumbs"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="bc-actions">
-          <div class="bc-color">
-            <button data-c="var(--accent)" style="background:var(--accent)" aria-pressed="true" title="Yellow"></button>
-            <button data-c="var(--pop-2)" style="background:var(--pop-2)" aria-pressed="false" title="Blue"></button>
-            <button data-c="var(--pop-1)" style="background:var(--pop-1)" aria-pressed="false" title="Pink"></button>
-            <button data-c="oklch(0.7 0.16 150)" style="background:oklch(0.7 0.16 150)" aria-pressed="false" title="Green"></button>
+    <div class="boards-stage" role="group" aria-label="Pullhub board picker demo" data-comment-anchor="d052eeb7aa-div">
+      <div class="boards-demo">
+        <div class="board-preview-panel" aria-live="polite">
+          <div class="preview-head">
+            <span class="preview-title">Mood Board</span>
+            <span class="preview-count">15 references</span>
           </div>
-          <div class="bc-do">
-            <button class="bc-btn share" title="Copy share link">Share</button>
-            <button class="bc-btn slides" title="Push to Google Slides">Slides ↗</button>
+          <div class="preview-thumbs" aria-hidden="true">
+            <i></i><i></i><i></i><i></i><i></i><i></i>
           </div>
         </div>
-      </div>
-      <div class="board-card c2" data-name="UI inspo">
-        <div class="bc-head"><div class="bc-name"><span class="swatch"></span>UI inspo</div><span class="count">61</span></div>
-        <div class="thumbs"><i></i><i></i><i></i><i></i><i></i><i data-comment-anchor="00d6729006-i"></i></div>
-        <div class="bc-actions">
-          <div class="bc-color">
-            <button data-c="var(--accent)" style="background:var(--accent)" aria-pressed="false" title="Yellow"></button>
-            <button data-c="var(--pop-2)" style="background:var(--pop-2)" aria-pressed="true" title="Blue"></button>
-            <button data-c="var(--pop-1)" style="background:var(--pop-1)" aria-pressed="false" title="Pink"></button>
-            <button data-c="oklch(0.7 0.16 150)" style="background:oklch(0.7 0.16 150)" aria-pressed="false" title="Green"></button>
+        <div class="board-picker-card">
+          <div class="picker-top">
+            <img class="picker-logo" src="pullhub-icon.svg" alt="">
+            <div>
+              <div class="picker-title">My Boards</div>
+              <div class="picker-sub">Pick a board →</div>
+            </div>
           </div>
-          <div class="bc-do">
-            <button class="bc-btn share" title="Copy share link">Share</button>
-            <button class="bc-btn slides" title="Push to Google Slides">Slides ↗</button>
-          </div>
-        </div>
-      </div>
-      <div class="board-card c3" data-name="Type studies">
-        <div class="bc-head"><div class="bc-name"><span class="swatch"></span>Type studies</div><span class="count">12</span></div>
-        <div class="thumbs"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="bc-actions">
-          <div class="bc-color">
-            <button data-c="var(--accent)" style="background:var(--accent)" aria-pressed="false" title="Yellow"></button>
-            <button data-c="var(--pop-2)" style="background:var(--pop-2)" aria-pressed="false" title="Blue"></button>
-            <button data-c="var(--pop-1)" style="background:var(--pop-1)" aria-pressed="true" title="Pink"></button>
-            <button data-c="oklch(0.7 0.16 150)" style="background:oklch(0.7 0.16 150)" aria-pressed="false" title="Green"></button>
-          </div>
-          <div class="bc-do">
-            <button class="bc-btn share" title="Copy share link">Share</button>
-            <button class="bc-btn slides" title="Push to Google Slides">Slides ↗</button>
+          <div class="picker-list">
+            <button class="board-row" type="button" aria-pressed="false" data-board="Art Direction" data-preview-count="14 references" data-color="var(--accent)">
+              <span class="board-row-dot" style="--bc:var(--accent)"></span>
+              <span class="board-row-name">Art Direction</span>
+              <span class="board-row-count">14</span>
+            </button>
+            <button class="board-row" type="button" aria-pressed="true" data-board="Mood Board" data-preview-count="15 references" data-color="var(--pop-2)">
+              <span class="board-row-dot" style="--bc:var(--pop-2)"></span>
+              <span class="board-row-name">Mood Board</span>
+              <span class="board-row-count">+1</span>
+            </button>
+            <button class="board-row" type="button" aria-pressed="false" data-board="References" data-preview-count="9 references" data-color="var(--pop-1)">
+              <span class="board-row-dot" style="--bc:var(--pop-1)"></span>
+              <span class="board-row-name">References</span>
+              <span class="board-row-count">9</span>
+            </button>
+            <span class="board-row board-row-new" aria-disabled="true">+ New board</span>
           </div>
         </div>
       </div>
@@ -1172,8 +1174,8 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <!-- PRICING -->
   <section id="pricing" class="rule-b" data-screen-label="Pricing">
     <div class="pricing-head">
-      <h2>Start free. Go unlimited when you're ready.</h2>
-      <p>No credit card to start. Pro unlocks unlimited everything plus sharing, with a 14-day free trial.</p>
+      <h2>Start free. Upgrade when your projects grow.</h2>
+      <p>Pro is built for heavier workflows, with more room for active projects, more export and sharing usage, and a 14-day free trial.</p>
     </div>
     <div class="plans">
       <div class="plan free">
@@ -1186,6 +1188,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
           <li><span class="tick">✓</span> Push to Google Slides</li>
           <li><span class="tick">✓</span> ZIP export</li>
         </ul>
+        <!-- TODO: Replace CTA href="#" with the published Chrome Web Store URL before launch. -->
         <a class="btn" href="#">Add to Chrome</a>
       </div>
       <div class="plan pro">
@@ -1194,11 +1197,12 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <div class="price">$5.00<small> /mo</small></div>
         <div class="pnote">Billed annually at USD 60/year · or $6.99 billed monthly</div>
         <ul>
-          <li><span class="tick">✓</span> Unlimited boards</li>
-          <li><span class="tick">✓</span> Unlimited image storage</li>
-          <li><span class="tick">✓</span> Board sharing &amp; links</li>
+          <li><span class="tick">✓</span> More room for active projects</li>
+          <li><span class="tick">✓</span> More export &amp; sharing usage</li>
+          <li><span class="tick">✓</span> Public board sharing links</li>
           <li><span class="tick">✓</span> Everything in Free</li>
         </ul>
+        <!-- TODO: Replace CTA href="#" with the published Chrome Web Store URL before launch. -->
         <a class="btn" href="#">Start free trial</a>
       </div>
     </div>
@@ -1207,7 +1211,40 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <!-- FINAL CTA -->
   <section class="cta-band rule-b" data-screen-label="Final CTA" data-comment-anchor="dad20f34eb-section">
     <h2>Pull it. Save it.<br><em>Slide it.</em></h2>
+    <!-- TODO: Replace CTA href="#" with the published Chrome Web Store URL before launch. -->
     <a class="btn btn--yellow" href="#">Add Pullhub to Chrome free</a>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq rule-b" data-screen-label="FAQ">
+    <h2>Questions before installing?</h2>
+    <div class="faq-list">
+      <details class="faq-item" open>
+        <summary>Is Pullhub free?</summary>
+        <p>Yes. You can start free. Pro is built for heavier workflows that need more room for active projects and more export and sharing usage.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does Pullhub work outside Chrome?</summary>
+        <p>Chrome is the officially supported browser. Pullhub should also work in many Chromium-based browsers such as Edge, Brave, Arc, and Comet, though some features and sign-in may depend on the browser.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Does Pullhub work with Google Slides?</summary>
+        <p>Yes. Pullhub collects references from the web and pushes them into Google Slides.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Where are my boards saved?</summary>
+        <p>Your boards are saved privately in your browser — nothing sits on our servers in v1. Export a ZIP anytime as a backup.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Can I share boards?</summary>
+        <p>Yes — public board sharing links are part of Pro. In v1, share links are snapshot-based, so re-share when you want to update the public version.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Why does Pullhub need Google access?</summary>
+        <p>Pullhub uses Google access to put your images into Slides. Your other Google Drive files stay in your account.</p>
+      </details>
+    </div>
+    <a class="faq-link" href="support.html">Running into a problem? Visit Support →</a>
   </section>
 
   <!-- SUPPORT -->
@@ -1225,7 +1262,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   <footer>
     <div class="foot-top">
       <div class="foot-brand">
-        <a class="brand" href="#"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
+        <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
         <p>The reference manager for creatives. Pull from the web, save to boards, push to slides.</p>
       </div>
       <div class="foot-cols">
@@ -1244,7 +1281,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
     </div>
     <div class="foot-legal">
-      <span>© 2026 Pullhub. Built for creatives.</span>
+      <span>© 2026 Debutt Studio. Pullhub is a product by Debutt Studio.</span>
       <span class="mono">PULL. SAVE. SLIDE.</span>
     </div>
   </footer>
@@ -1254,14 +1291,34 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
 <!-- drag-to-fill slots -->
 <script src="assets/scripts/c8d2a802-ebc7-4c94-9e35-f8de829af1ab.js"></script>
 
-<!-- draggable boards mini-demo -->
-<script src="assets/scripts/e9e8aad3-3b85-49c6-ad53-708f959fc433.js"></script>
-
 <!-- problem: tab-switching focus demo -->
 <script src="assets/scripts/3d0b7e80-d6e1-4728-ae73-ce3a5767ac1a.js"></script>
 
 <!-- lightweight landing interactions -->
 <script src="assets/scripts/pullhub-demo-interactions.js"></script>
+
+<!-- board picker preview -->
+<script>
+(() => {
+  const demo = document.querySelector('.boards-stage[aria-label="Pullhub board picker demo"]');
+  if (!demo) return;
+
+  const rows = Array.from(demo.querySelectorAll('.board-row[type="button"]'));
+  const preview = demo.querySelector('.board-preview-panel');
+  const title = demo.querySelector('.preview-title');
+  const count = demo.querySelector('.preview-count');
+  if (!rows.length || !preview || !title || !count) return;
+
+  rows.forEach((row) => {
+    row.addEventListener('click', () => {
+      rows.forEach((item) => item.setAttribute('aria-pressed', item === row ? 'true' : 'false'));
+      title.textContent = row.dataset.board || '';
+      count.textContent = row.dataset.previewCount || '';
+      preview.style.setProperty('--bc', row.dataset.color || 'var(--accent)');
+    });
+  });
+})();
+</script>
 
 <!-- demo video playback -->
 <script>
