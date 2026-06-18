@@ -1,5 +1,18 @@
 # Pullhub Launch Checklist
 
+## Current Chrome Web Store Draft - 2026-06-18
+- Draft item has been created.
+- Extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`
+- Chrome Web Store URL: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
+- Current status: Draft, not submitted for review, not published.
+- The Chrome Web Store URL may 404 until the item is published; this is expected.
+- Rebuilt package has been uploaded to the CWS draft.
+- Manifest version: `1.0.0`.
+- CWS/dashboard visible version (`version_name`): `1.0`.
+- Latest rebuilt zip SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`.
+- Rebuilt package includes the popup support email fix.
+- Website Add to Chrome CTAs point to the CWS URL.
+
 ## Website
 - Publish `index.html`, `privacy.html`, `terms.html`, and `support.html`.
 - Use `debutt.studio`.
@@ -77,8 +90,27 @@ Next steps:
 ## Google Cloud
 - OAuth consent screen app name: Pullhub.
 - Support email: support@debutt.studio.
-- Authorized domain: debutt.studio.
-- Chrome extension OAuth client should use the final Chrome Web Store extension ID.
+- Google Cloud project name: `pullhub`.
+- Project number: `345457259417`.
+- Project ID shown in console: `smart-test-497508`.
+- OAuth app branding:
+  - App name: Pullhub.
+  - Home page: `https://debutt.studio/`.
+  - Privacy policy: `https://debutt.studio/privacy.html`.
+  - Terms: `https://debutt.studio/terms.html`.
+- Authorized domains include `chromiumapp.org` and `debutt.studio`.
+- Manifest OAuth client ID: `345457259417-v4q2j8tm8agjvucm1m5f183r2r955msj.apps.googleusercontent.com`.
+- OAuth client type currently shown: Web application.
+- The Web application client type is correct for the current implementation because the code uses `chrome.identity.launchWebAuthFlow` with `chromiumapp.org` redirect URIs.
+- Authorized redirect URIs include:
+  - Old/testing redirect, intentionally retained: `https://hpikpbjjahbpjjlbaengkocckppdkmbh.chromiumapp.org/`.
+  - Production CWS redirect: `https://hgkankpnpgoikbcggnlnlgddmnkendof.chromiumapp.org/`.
+- Manifest was not changed for OAuth.
+- No manifest `"key"` field was added.
+- Current extension usage / OAuth appears to work for current extension usage / dev ID behavior after adding the production redirect URI.
+- Production-ID OAuth still must be tested on CWS extension ID `hgkankpnpgoikbcggnlnlgddmnkendof` before submit review.
+- To test production-ID OAuth before submit review, use a CWS trusted tester / draft install flow if available, or temporarily pin manifest `"key"` only if explicitly chosen later.
+- Branding verification and the 100-user OAuth cap remain later considerations, not immediate blockers for draft setup.
 - Keep a separate development OAuth client for unpacked testing if the unpacked ID differs.
 
 ## Firebase
@@ -91,13 +123,18 @@ Next steps:
 - Trial: 14 days.
 - Recommended plans: USD 6.99 monthly, USD 60 annual.
 - Production ExtensionPay ID in the extension package is `pullhub`.
+- Before CWS review submission, confirm the ExtensionPay dashboard is configured for CWS extension ID `hgkankpnpgoikbcggnlnlgddmnkendof`.
 
 ## Chrome Web Store
-- Build the upload package with `scripts/package-webstore.sh`.
-- Upload `outputs/pullhub-webstore.zip`.
+- Current package uploaded to the draft: `outputs/pullhub-webstore.zip`.
+- Build future upload packages with `scripts/package-webstore.sh`.
 - The package script uses an explicit production allowlist and excludes `.git`, `.DS_Store`, source maps, dev docs, stale launch artifacts, and non-production debris.
 - After packaging, compare the ZIP contents against the clean staging directory produced by the script.
+- Distribution / Payments: Contains in-app purchases.
+- Distribution / Visibility: Public.
+- Privacy remote code answer: No, Pullhub does not execute remotely hosted code.
 - Add store icon and screenshots.
+- Prepare 5 screenshots.
 - Add homepage, privacy policy, and support links.
 - Fill data practices consistently with the privacy policy.
 - Explain why `<all_urls>` is needed for user-selected saving and capture.
@@ -123,10 +160,16 @@ Next steps:
 - Test board sharing if enabled.
 
 ## Manual Google OAuth / CWS Console Checks
-- Confirm final Chrome Web Store extension ID.
-- Add authorized redirect URI: `https://<final-extension-id>.chromiumapp.org/`.
+- Confirm final Chrome Web Store extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`.
+- Confirm authorized redirect URI exists: `https://hgkankpnpgoikbcggnlnlgddmnkendof.chromiumapp.org/`.
 - Confirm OAuth consent screen app name, homepage, privacy URL, support email, and authorized domain match Pullhub / debutt.studio.
 - Confirm whether `drive.metadata` triggers restricted-scope verification / CASA.
 - If restricted-scope verification blocks launch, fallback plan is to scope-reduce by removing the current/opened deck rename path that requires `drive.metadata`.
 - Confirm `<all_urls>`, `tabs`, and content script justifications are copied into the CWS permission justification fields.
-- Confirm upload ZIP checksum matches: `2394c24520e1a8824f2b591a16b84921c8aa0a1d175df5d6f3ac2b22f0a7a0d0`.
+- Confirm ExtensionPay dashboard is configured for the CWS extension ID before submit review.
+- Complete the CWS Privacy questionnaire before submit review.
+- Complete store listing fields and assets before submit review.
+- Prepare 5 screenshots before submit review.
+- Run final production-ID OAuth / sign-in / Slides push / Drive fallback test before submit review.
+- Record final package SHA and commit before submit review.
+- Confirm upload ZIP checksum matches: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`.

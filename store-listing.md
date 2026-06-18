@@ -1,5 +1,18 @@
 # Pullhub Chrome Web Store Listing Draft
 
+## Current CWS Draft Status - 2026-06-18
+- Extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`
+- Chrome Web Store URL: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
+- Status: Draft, not submitted for review, not published.
+- The CWS URL may 404 until publication; this is expected.
+- Manifest version uploaded to draft: `1.0.0`
+- CWS/dashboard visible version (`version_name`): `1.0`
+- Latest uploaded package SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`
+- Distribution / Payments: Contains in-app purchases.
+- Distribution / Visibility: Public.
+- Remote code answer: No, Pullhub does not execute remotely hosted code.
+- Remaining before submit review: ExtensionPay dashboard confirmation for the CWS extension ID, Privacy questionnaire, listing fields/assets, 5 screenshots, final production-ID OAuth/sign-in/Slides push/Drive fallback test, and final SHA/commit record.
+
 ## Short Description
 Save visual references into boards and push them to Google Slides.
 
@@ -46,6 +59,18 @@ Free plan limits are designed for trying the workflow. Pullhub Pro unlocks unlim
 - Privacy Policy: `https://debutt.studio/privacy.html`
 - Support: `https://debutt.studio/support.html`
 - Terms: `https://debutt.studio/terms.html`
+- Chrome Web Store draft: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
+
+## OAuth / External Services Notes
+- Manifest OAuth client ID: `345457259417-v4q2j8tm8agjvucm1m5f183r2r955msj.apps.googleusercontent.com`.
+- Production redirect URI is configured in Google Cloud: `https://hgkankpnpgoikbcggnlnlgddmnkendof.chromiumapp.org/`.
+- Old/testing redirect URI is intentionally retained: `https://hpikpbjjahbpjjlbaengkocckppdkmbh.chromiumapp.org/`.
+- The OAuth client type is Web application, which is correct for the current implementation because the code uses `chrome.identity.launchWebAuthFlow` with `chromiumapp.org` redirect URIs.
+- Manifest was not changed for OAuth and no manifest `"key"` field was added.
+- Current extension usage / OAuth appears to work for current extension usage / dev ID behavior; production-ID OAuth still must be tested on CWS extension ID `hgkankpnpgoikbcggnlnlgddmnkendof` before submit review.
+- To test production-ID OAuth before submit review, use a CWS trusted tester / draft install flow if available, or temporarily pin manifest `"key"` only if explicitly chosen later.
+- `options.html` enterprise enquiry intentionally remains `info@debutt.studio`.
+- Support and bug-report email should use `support@debutt.studio`.
 
 ## Suggested Category
 Productivity or Workflow & Planning
