@@ -1031,7 +1031,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
       <div class="step-media" data-comment-anchor="a38b1aa518-div">
         <div class="demo-slot">
-          <video autoplay muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
+          <video muted loop playsinline preload="none" poster="assets/demos/01-pull.jpeg">
             <source src="assets/demos/01-pull.webm" type="video/webm">
             <source src="assets/demos/01-pull.mp4" type="video/mp4">
           </video>
@@ -1049,7 +1049,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
       <div class="step-media" data-comment-anchor="861c8c7b04-div">
         <div class="demo-slot">
-          <video autoplay muted loop playsinline preload="none" poster="assets/demos/02-save.jpeg">
+          <video muted loop playsinline preload="none" poster="assets/demos/02-save.jpeg">
             <source src="assets/demos/02-save.webm" type="video/webm">
             <source src="assets/demos/02-save.mp4" type="video/mp4">
           </video>
@@ -1067,7 +1067,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       </div>
       <div class="step-media" data-comment-anchor="ed31d799e7-div">
         <div class="demo-slot">
-          <video autoplay muted loop playsinline preload="none" poster="assets/demos/03-slide.jpeg">
+          <video muted loop playsinline preload="none" poster="assets/demos/03-slide.jpeg">
             <source src="assets/demos/03-slide.webm" type="video/webm">
             <source src="assets/demos/03-slide.mp4" type="video/mp4">
           </video>
@@ -1327,8 +1327,11 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
   if (!videos.length) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const MIN_VISIBLE_RATIO = 0.5;
+  const ratios = new Map(videos.map((video) => [video, 0]));
   const pause = (video) => { try { video.pause(); } catch (_) {} };
   const play = (video) => { video.play().catch(() => {}); };
+  const pauseAll = () => videos.forEach(pause);
 
   videos.forEach((video) => {
     video.muted = true;
@@ -1336,24 +1339,47 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
     video.playsInline = true;
   });
 
+  const syncActiveVideo = () => {
+    if (document.hidden || prefersReducedMotion.matches) {
+      pauseAll();
+      return;
+    }
+
+    let active = null;
+    let activeRatio = 0;
+    videos.forEach((video) => {
+      const ratio = ratios.get(video) || 0;
+      if (ratio > activeRatio) {
+        active = video;
+        activeRatio = ratio;
+      }
+    });
+
+    videos.forEach((video) => {
+      if (video === active && activeRatio >= MIN_VISIBLE_RATIO) play(video);
+      else pause(video);
+    });
+  };
+
   if (prefersReducedMotion.matches) {
-    videos.forEach(pause);
+    pauseAll();
     return;
   }
 
   if (!('IntersectionObserver' in window)) {
-    videos.forEach(play);
+    play(videos[0]);
     return;
   }
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) play(entry.target);
-      else pause(entry.target);
+      ratios.set(entry.target, entry.intersectionRatio);
     });
-  }, { threshold: 0.2 });
+    syncActiveVideo();
+  }, { threshold: [0, 0.25, 0.5, 0.75, 1] });
 
   videos.forEach((video) => observer.observe(video));
+  document.addEventListener('visibilitychange', syncActiveVideo);
 })();
 </script>
 
