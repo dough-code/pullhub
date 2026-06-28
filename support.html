@@ -134,13 +134,27 @@
       margin: 4px 0;
     }
 
-    .support-note {
+    .setup-card {
+      background: color-mix(in oklch, var(--accent) 24%, var(--paper));
+    }
+
+    .setup-steps {
+      padding-left: 22px;
+      margin-top: 14px;
+    }
+
+    .setup-steps li {
+      margin: 8px 0;
+      line-height: 1.6;
+    }
+
+    .setup-note {
       color: var(--ink-soft);
-      font-family: var(--mono);
-      font-size: 12px;
+      font-family: var(--font);
+      font-size: 15.5px;
       font-weight: 700;
-      line-height: 1.55;
-      margin: 10px 0 0;
+      line-height: 1.6;
+      margin: 24px 0 0;
     }
 
     .contact-card {
@@ -201,10 +215,18 @@
         <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
         <div class="nav-links">
           <a class="l" href="index.html">Home</a>
+          <a class="l" href="support.html">Support</a>
           <a class="l" href="privacy.html">Privacy</a>
           <a class="l" href="terms.html">Terms</a>
           <div class="nav-cta"><a class="btn btn--yellow" href="index.html#pricing">Add to Chrome free</a></div>
         </div>
+      </div>
+      <div class="mobile-nav" aria-label="Mobile navigation">
+        <a href="support.html">Support</a>
+        <span aria-hidden="true">·</span>
+        <a href="privacy.html">Privacy</a>
+        <span aria-hidden="true">·</span>
+        <a href="terms.html">Terms</a>
       </div>
     </nav>
 
@@ -220,13 +242,26 @@
       <section class="doc-section">
         <nav class="doc-wrap support-jump" aria-label="Support quick links">
           <span class="support-jump-label">Jump to:</span>
+          <a href="#first-time-setup">First-time setup</a>
           <a href="#slides-pushing">Slides &amp; pushing</a>
+          <a href="#capture-modes">Capture modes</a>
           <a href="#account-billing">Account &amp; billing</a>
           <a href="#sharing">Sharing</a>
           <a href="#saving-export">Saving &amp; export</a>
         </nav>
 
         <div class="doc-wrap support-stack">
+          <article class="doc-card setup-card" id="first-time-setup">
+            <h2>First-time setup</h2>
+            <h3>Set up Pullhub in 3 steps</h3>
+            <ol class="setup-steps">
+              <li>Add Pullhub to Chrome and pin it to your toolbar.</li>
+              <li>Sign in with Google and leave every requested permission box checked. Pullhub needs Slides and Drive access to put images into your presentation.</li>
+              <li>Open a Google Slides file, then open Pullhub and start pulling references.</li>
+            </ol>
+            <p class="setup-note">* Skipped a box during sign-in? Sign out of Pullhub and sign in again, this time leaving every requested Google permission checked.</p>
+          </article>
+
           <article class="doc-card">
             <h2>Quick fixes</h2>
             <div class="fix-groups">
@@ -236,11 +271,25 @@
                   <div class="fix-item">
                     <h4>Google Slides isn't detected</h4>
                     <ul>
+                      <li>First, check your Google permissions. If you skipped a permission box during sign-in, Pullhub may not be able to see or push to Slides.</li>
+                      <li>Sign out of Pullhub, sign in again, and leave every requested Google permission checked.</li>
                       <li>Make sure a Google Slides file is open.</li>
-                      <li>Refresh the Google Slides tab.</li>
-                      <li>Open Pullhub again from the toolbar.</li>
+                      <li>Refresh the Google Slides tab, then open Pullhub again from the toolbar.</li>
+                      <li>Confirm Chrome, Google Slides, and Pullhub are using the same Google account.</li>
                       <li>Restart Chrome if it still is not detected.</li>
                     </ul>
+                  </div>
+                  <div class="fix-item">
+                    <h4>&ldquo;Cannot access Slides: insufficient authentication scopes&rdquo;</h4>
+                    <p>This usually means one or more Google permissions were not granted during sign-in.</p>
+                    <ul>
+                      <li>Open Pullhub and sign out.</li>
+                      <li>Sign in with Google again.</li>
+                      <li>On the Google permission screen, leave every checkbox checked.</li>
+                      <li>Make sure you are signing in with the same Google account you use for Google Slides.</li>
+                      <li>Refresh your Google Slides tab, then open Pullhub again.</li>
+                    </ul>
+                    <p class="setup-note">* Pullhub only uses this access to detect Slides, push images into Slides, and upload fallback images when needed. Your other Drive files stay private.</p>
                   </div>
                   <div class="fix-item">
                     <h4>Images are missing or aren't pushed to Slides</h4>
@@ -250,6 +299,21 @@
                       <li>If a site blocks an image, Pullhub tries to save a copy to your Google Drive so Slides can display it.</li>
                       <li>If an image is still missing, push those images again, or capture them with screenshot capture and push again.</li>
                     </ul>
+                  </div>
+                </div>
+              </section>
+
+              <section class="fix-group" id="capture-modes">
+                <h3>Capture modes</h3>
+                <div class="fix-list">
+                  <div class="fix-item">
+                    <h4>Three ways to capture</h4>
+                    <ul>
+                      <li>Direct Capture / Alt+Shift+C: fastest way to grab a quick screenshot. It saves to the Captures board.</li>
+                      <li>Cursor Click-to-Capture: click the cursor icon beside a board, then capture directly into that board.</li>
+                      <li>Cursor shortcut / Alt+Shift+X: starts cursor capture using the last board selected with the cursor icon.</li>
+                    </ul>
+                    <p class="setup-note">* Choosing a target board directly after shortcut capture is on the roadmap.</p>
                   </div>
                 </div>
               </section>
@@ -303,7 +367,7 @@
                       <li>If it is your board, open Pullhub and turn Public share back on to create a fresh link.</li>
                       <li>If someone sent you the link, ask the board owner to enable sharing again or send a new link.</li>
                     </ul>
-                    <p class="support-note">Still stuck? Email support with a screenshot.</p>
+                    <p class="setup-note">* Still stuck? Email support with a screenshot.</p>
                   </div>
                 </div>
               </section>
@@ -337,7 +401,7 @@
                       <li>If you exported a ZIP backup, import that ZIP to restore your board.</li>
                       <li>If you did not export a ZIP backup, local boards usually cannot be recovered.</li>
                     </ul>
-                    <p class="support-note">Still stuck? Email support with a screenshot.</p>
+                    <p class="setup-note">* Still stuck? Email support with a screenshot.</p>
                   </div>
                   <div class="fix-item">
                     <h4>What is the &ldquo;Pullhub Uploads&rdquo; folder in my Drive?</h4>

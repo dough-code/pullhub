@@ -91,6 +91,9 @@ img { display: block; max-width: 100%; }
   display: flex; align-items: center;
   padding-left: 28px; border-left: var(--bd) solid var(--line); margin-left: 28px;
 }
+.mobile-nav {
+  display: none;
+}
 
 .doc-hero {
   padding: clamp(76px, 10vw, 128px) clamp(20px, 4vw, 56px) clamp(46px, 6vw, 72px);
@@ -174,6 +177,16 @@ li { margin: 8px 0; }
 @media (max-width: 860px) {
   .nav-links .l { display: none; }
   .nav-cta { border-left: none; margin-left: 0; padding-left: 0; }
+  .mobile-nav {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 20px 12px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .mobile-nav a:hover { color: var(--ink); }
   .doc-wrap, .doc-card { margin-left: 0; }
   .support-grid { grid-template-columns: 1fr; }
 }
