@@ -18,6 +18,7 @@
         <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
         <div class="nav-links">
           <a class="l" href="index.html">Home</a>
+          <a class="l" href="getting-started.html">Getting Started</a>
           <a class="l" href="support.html">Support</a>
           <a class="l" href="privacy.html">Privacy</a>
           <a class="l" href="terms.html">Terms</a>
@@ -25,6 +26,8 @@
         </div>
       </div>
       <div class="mobile-nav" aria-label="Mobile navigation">
+        <a href="getting-started.html">Getting Started</a>
+        <span aria-hidden="true">·</span>
         <a href="support.html">Support</a>
         <span aria-hidden="true">·</span>
         <a href="privacy.html">Privacy</a>
@@ -61,7 +64,7 @@
           <h2>Google Drive image fallback</h2>
           <p>Google Slides access is used to insert selected references into the user's presentations. When direct insertion into Google Slides fails because of technical restrictions such as CORS or similar limitations, Pullhub may upload the image to the user's Google Drive folder named "Pullhub Uploads". The uploaded file may be set so anyone with the link can view or read it solely so Google Slides can render and insert the image. This link-based permission is for the fallback file used by that workflow. This does not grant Pullhub access to the user's entire Google Drive. The drive.file permission is used only for Pullhub-created fallback files needed for the workflow. These files remain in the user's Google Drive and can be managed or deleted by the user.</p>
           <h2>Google OAuth scopes</h2>
-          <p>The Google presentations scope is used to insert selected images and layouts into Google Slides. The drive.file scope is used to create and manage Pullhub-created fallback files required for the user's Slides workflow. The drive.metadata scope is used to locate and check metadata for the Pullhub Uploads folder and related Drive files used by the fallback workflow; Pullhub does not read Drive file contents through this scope. The userinfo.email scope is used to show the signed-in Google account, connect account state to Pullhub access, and support Firebase sharing ownership.</p>
+          <p>The Google presentations scope is used to insert selected images and layouts into Google Slides. The drive.file scope is used to create and manage Pullhub-created fallback files required for the user's Slides workflow. The userinfo.email scope is used to show the signed-in Google account, connect account state to Pullhub access, and support Firebase sharing ownership. Presentation rename is temporarily disabled during launch while Pullhub avoids the restricted Google Drive metadata scope.</p>
           <h2>Public Share</h2>
           <p>When Public Share is enabled, Pullhub may store a snapshot representation of the board in Firebase/Firestore. This may include board metadata, layout information, image source URLs, text annotations when applicable, and public share snapshot data. Users can revoke public access by disabling Public Share, deleting the board, or otherwise removing the shared snapshot through normal service operations.</p>
           <h2>Third-party services</h2>
@@ -82,7 +85,8 @@
 
     <footer class="foot rule-b">
       <span>Built by debutt.studio</span>
-      <span>support@debutt.studio</span>
+      <span><a href="mailto:support@debutt.studio">support@debutt.studio</a></span>
+      <span class="doc-foot-links"><a href="getting-started.html">Getting Started</a><a href="support.html">Support</a><a href="terms.html">Terms</a></span>
     </footer>
   </div>
 </body>

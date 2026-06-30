@@ -5,8 +5,8 @@
 - Chrome Web Store URL: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
 - Status: Draft, not submitted for review, not published.
 - The CWS URL may 404 until publication; this is expected.
-- Manifest version uploaded to draft: `1.0.0`
-- CWS/dashboard visible version (`version_name`): `1.0`
+- Manifest version for next submission: `1.0.2`
+- CWS/dashboard visible version (`version_name`): `1.0.2`
 - Latest uploaded package SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`
 - Distribution / Payments: Contains in-app purchases.
 - Distribution / Visibility: Public.
@@ -48,7 +48,6 @@ Free plan limits are designed for trying the workflow. Pullhub Pro unlocks unlim
 - `web_accessible_resources`: Allows the extension popup and its required local scripts/styles to render inside the optional pinned floating widget iframe on webpages.
 - Google `presentations`: Inserts user-selected references and layouts into Google Slides.
 - Google `drive.file`: Creates and manages Pullhub-created fallback image files used when Google Slides cannot insert a source image directly.
-- Google `drive.metadata`: Locates and checks metadata for the Pullhub Uploads folder and related Drive files used by the fallback workflow; Pullhub does not read Drive file contents through this scope.
 - Google `userinfo.email`: Shows the signed-in account, links account state to Pullhub access, and supports Firebase sharing ownership.
 - Drive fallback public-link behavior: If direct Slides insertion fails, Pullhub may upload an image to the user's Drive and set that fallback file so anyone with the link can view it, only so Google Slides can render the image.
 - Firebase/Firestore: Used only for optional public board sharing. Shared boards store a snapshot of the board data needed for the public link.

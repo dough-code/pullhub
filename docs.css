@@ -153,6 +153,188 @@ img { display: block; max-width: 100%; }
   font-weight: 900;
   margin: 34px 0 12px;
 }
+.doc-card h2:first-child { margin-top: 0; }
+.doc-card h3 {
+  font-size: clamp(20px, 2.1vw, 26px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  font-weight: 900;
+  margin: 24px 0 10px;
+}
+.doc-card strong { color: var(--ink); }
+.doc-note {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.6;
+  margin-top: 18px;
+}
+.doc-stack {
+  display: grid;
+  gap: 18px;
+}
+.doc-stack .doc-card {
+  margin-left: 0;
+  max-width: none;
+}
+.doc-shell {
+  max-width: 960px;
+  margin-left: clamp(0px, 12vw, 140px);
+}
+.doc-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+.doc-pill {
+  min-height: 74px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: color-mix(in oklch, var(--accent) 20%, var(--paper));
+  border: var(--bd) solid var(--line);
+  border-radius: 12px;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 12px;
+}
+.workflow-strip {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  margin-top: 24px;
+}
+.workflow-node,
+.workflow-arrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+}
+.workflow-node {
+  min-height: 78px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: var(--paper);
+  border: var(--bd) solid var(--line);
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  padding: 12px;
+}
+.workflow-node.is-highlight {
+  background: var(--accent);
+}
+.workflow-arrow {
+  color: var(--accent-deep);
+}
+.doc-step-list {
+  counter-reset: doc-step;
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+.doc-step {
+  counter-increment: doc-step;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 16px;
+  background: color-mix(in oklch, var(--accent) 14%, var(--paper));
+  border: var(--bd) solid var(--line);
+  border-radius: 14px;
+  padding: clamp(18px, 2.6vw, 26px);
+}
+.doc-step::before {
+  content: counter(doc-step, decimal-leading-zero);
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  border: var(--bd) solid var(--line);
+  border-radius: 10px;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+.doc-step h3 {
+  margin-top: 0;
+}
+.doc-step p:last-child,
+.doc-card p:last-child {
+  margin-bottom: 0;
+}
+.doc-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+.doc-link {
+  color: var(--ink);
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+.doc-link:hover { color: var(--accent-deep); }
+.doc-accordion {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+.doc-accordion details {
+  background: var(--paper);
+  border: var(--bd) solid var(--line);
+  border-radius: 14px;
+  box-shadow: 4px 4px 0 0 var(--ink);
+  overflow: hidden;
+}
+.doc-accordion summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px clamp(18px, 2.6vw, 26px);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+.doc-accordion summary::-webkit-details-marker { display: none; }
+.doc-accordion summary::after {
+  content: "+";
+  flex: none;
+  color: var(--accent-deep);
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 700;
+}
+.doc-accordion details[open] summary {
+  background: color-mix(in oklch, var(--accent) 18%, var(--paper));
+  border-bottom: var(--bd) solid var(--line);
+}
+.doc-accordion details[open] summary::after { content: "-"; }
+.doc-accordion summary:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+}
+.doc-accordion-body {
+  padding: clamp(18px, 2.6vw, 26px);
+}
+.doc-accordion-body h3:first-child { margin-top: 0; }
+.doc-foot-links {
+  display: inline-flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.doc-foot-links a:hover { color: var(--ink); }
 .support-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(280px, .9fr);
@@ -180,6 +362,8 @@ li { margin: 8px 0; }
   .mobile-nav {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
+    line-height: 1.4;
     gap: 12px;
     padding: 0 20px 12px;
     color: var(--ink-soft);
@@ -187,12 +371,24 @@ li { margin: 8px 0; }
     font-weight: 700;
   }
   .mobile-nav a:hover { color: var(--ink); }
-  .doc-wrap, .doc-card { margin-left: 0; }
+  .doc-wrap, .doc-card, .doc-shell { margin-left: 0; }
   .support-grid { grid-template-columns: 1fr; }
+  .doc-intro-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .workflow-strip {
+    grid-template-columns: 1fr;
+  }
+  .workflow-arrow {
+    text-align: center;
+    transform: rotate(90deg);
+  }
 }
 @media (max-width: 560px) {
   .nav-inner { height: 66px; }
   .brand { font-size: 20px; padding-right: 10px; }
   .btn { padding: 11px 16px; font-size: 14px; }
   .doc-card { box-shadow: 5px 5px 0 0 var(--ink); }
+  .doc-intro-grid { grid-template-columns: 1fr; }
+  .doc-step {
+    grid-template-columns: 1fr;
+  }
 }

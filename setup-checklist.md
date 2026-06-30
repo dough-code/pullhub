@@ -7,8 +7,8 @@
 - Current status: Draft, not submitted for review, not published.
 - The Chrome Web Store URL may 404 until the item is published; this is expected.
 - Rebuilt package has been uploaded to the CWS draft.
-- Manifest version: `1.0.0`.
-- CWS/dashboard visible version (`version_name`): `1.0`.
+- Manifest version for next submission: `1.0.2`.
+- CWS/dashboard visible version (`version_name`): `1.0.2`.
 - Latest rebuilt zip SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`.
 - Rebuilt package includes the popup support email fix.
 - Website Add to Chrome CTAs point to the CWS URL.
@@ -143,7 +143,6 @@ Next steps:
 - Explain Google OAuth scopes:
   - `presentations`: insert selected references and layouts into Google Slides.
   - `drive.file`: create and manage Pullhub-created fallback files for Slides insertion.
-  - `drive.metadata`: locate and check metadata for the Pullhub Uploads folder and related Drive files used by the fallback workflow; not used to read Drive file contents.
   - `userinfo.email`: show the signed-in account, connect account state to Pullhub access, and support Firebase sharing ownership.
 - Explain Drive fallback public-link behavior: when direct Slides insertion fails, Pullhub may upload a fallback image to the user's Drive and make that file readable by anyone with the link so Google Slides can render it.
 - Explain Firebase/Firestore: optional public board sharing stores a board snapshot for the public link.
@@ -163,8 +162,7 @@ Next steps:
 - Confirm final Chrome Web Store extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`.
 - Confirm authorized redirect URI exists: `https://hgkankpnpgoikbcggnlnlgddmnkendof.chromiumapp.org/`.
 - Confirm OAuth consent screen app name, homepage, privacy URL, support email, and authorized domain match Pullhub / debutt.studio.
-- Confirm whether `drive.metadata` triggers restricted-scope verification / CASA.
-- If restricted-scope verification blocks launch, fallback plan is to scope-reduce by removing the current/opened deck rename path that requires `drive.metadata`.
+- `drive.metadata` has been temporarily removed for launch-risk reduction; presentation rename is disabled and should be revisited later with a narrower OAuth-safe design.
 - Confirm `<all_urls>`, `tabs`, and content script justifications are copied into the CWS permission justification fields.
 - Confirm ExtensionPay dashboard is configured for the CWS extension ID before submit review.
 - Complete the CWS Privacy questionnaire before submit review.

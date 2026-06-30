@@ -385,7 +385,7 @@ img { display: block; max-width: 100%; }
   .nav-links .l { display: none; }
   .nav-cta { border-left: none; margin-left: 0; padding-left: 0; }
   .mobile-nav {
-    display: flex; justify-content: center; gap: 12px;
+    display: flex; justify-content: center; flex-wrap: wrap; line-height: 1.4; gap: 12px;
     padding: 0 20px 12px; color: var(--ink-soft);
     font-size: 14px; font-weight: 700;
   }
@@ -941,14 +941,15 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <a class="brand" href="index.html"><img class="logo-mark" src="pullhub-icon.svg" alt="Pullhub">Pullhub</a>
       <div class="nav-links">
         <a class="l" href="index.html">Home</a>
+        <a class="l" href="getting-started.html">Getting Started</a>
         <a class="l" href="support.html">Support</a>
-        <a class="l" href="privacy.html">Privacy</a>
-        <a class="l" href="terms.html">Terms</a>
         <!-- Chrome Web Store CTA. -->
         <div class="nav-cta"><a class="btn btn--yellow" href="https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof">Add to Chrome free</a></div>
       </div>
     </div>
     <div class="mobile-nav" aria-label="Mobile navigation">
+      <a href="getting-started.html">Getting Started</a>
+      <span aria-hidden="true">·</span>
       <a href="support.html">Support</a>
       <span aria-hidden="true">·</span>
       <a href="privacy.html">Privacy</a>
@@ -968,7 +969,7 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
         <a class="btn btn--yellow" href="https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof">Add to Chrome free</a>
         <a class="btn btn--ghost" href="#how">See how it works ↓</a>
       </div>
-      <a class="hero-setup-link" href="support.html#first-time-setup">New to Pullhub? See the 3-step setup →</a>
+      <a class="hero-setup-link" href="getting-started.html">New to Pullhub? Start with the 5-minute guide →</a>
       <p class="hero-browser">Works in Chrome and most Chromium-based browsers.</p>
       <div class="hero-meta">
         <span><b>✓</b> Free forever plan</span>
@@ -1294,10 +1295,11 @@ footer { padding: clamp(40px,4vw,56px) clamp(24px,4vw,56px) 36px; }
       <div class="foot-cols">
         <div class="foot-col">
           <h5>Product</h5>
+          <a href="getting-started.html">Getting Started</a>
           <a href="#how">How it works</a>
           <a href="#boards">Boards</a>
           <a href="#pricing">Pricing</a>
-          <a href="support.html">Contact</a>
+          <a href="support.html">Support</a>
         </div>
         <div class="foot-col">
           <h5>Legal</h5>
