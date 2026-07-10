@@ -1,14 +1,40 @@
 # Pullhub Launch Checklist
 
-## Current Chrome Web Store Draft - 2026-06-18
+## Current Chrome Web Store Hold - 2026-07-10
+- Active source is clean at commit `634eddf58a773191a5ffe0da7da10fe69b345c42`.
+- Current source manifest remains `1.0.4` while waiting for Google OAuth approval.
+- Google OAuth review is pending.
+- v1.0.5 has not been uploaded to Chrome Web Store.
+- v1.0.5 must be rebuilt after Google OAuth approval before any upload.
+- v1.0.5 scope is local-only analytics foundation, Free capture-limit logic fix, and cursor capture over-limit feedback fix.
+- No remote analytics is included in v1.0.5.
+- OAuth scopes remain `presentations`, `drive.file`, and `userinfo.email`.
+- `drive.metadata` remains absent.
+- Public board sharing links are Pro-only.
+- ZIP export remains Free.
+- Push to Google Slides remains Free.
+- TRIAL/PRO entitlement is ExtensionPay / Chrome profile entitlement, separate from the selected Google OAuth account.
+- Reference Tray / send tray fallback remains deferred and is not included in v1.0.5.
+
+## Historical Chrome Web Store Package - 2026-07-04
+- Historical upload candidate: `outputs/pullhub-webstore.zip`.
+- Historical manifest version: `1.0.4`.
+- Historical CWS/dashboard visible version (`version_name`): `1.0.4`.
+- Historical rebuilt zip SHA-256: `c9c6d258a9a1d8c0df6f19f4d44191c81ddaa79ec1cbf8097a0ba53d81d6f54f`.
+- Previous `pullhub-webstore.zip` was inspected and still contained manifest version `1.0.3`; it was replaced by the historical 1.0.4 zip.
+- Historical rebuilt zip had `manifest.json` at the zip root and no `__MACOSX` or `.DS_Store`.
+- Checks passed for the historical package: `node --check popup.js`, `node --check background.js`, `node --check options.js`, `node --check content.js`, and `zip -T pullhub-webstore.zip`.
+- This package is superseded for v1.0.5 and should not be treated as the next upload candidate.
+
+## Historical Chrome Web Store Draft - 2026-06-18
 - Draft item has been created.
 - Extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`
 - Chrome Web Store URL: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
 - Current status: Draft, not submitted for review, not published.
 - The Chrome Web Store URL may 404 until the item is published; this is expected.
 - Rebuilt package has been uploaded to the CWS draft.
-- Manifest version for next submission: `1.0.2`.
-- CWS/dashboard visible version (`version_name`): `1.0.2`.
+- Historical manifest version: `1.0.2`.
+- Historical CWS/dashboard visible version (`version_name`): `1.0.2`.
 - Latest rebuilt zip SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`.
 - Rebuilt package includes the popup support email fix.
 - Website Add to Chrome CTAs point to the CWS URL.
@@ -126,7 +152,9 @@ Next steps:
 - Before CWS review submission, confirm the ExtensionPay dashboard is configured for CWS extension ID `hgkankpnpgoikbcggnlnlgddmnkendof`.
 
 ## Chrome Web Store
-- Current package uploaded to the draft: `outputs/pullhub-webstore.zip`.
+- v1.0.5 has not been uploaded to the draft.
+- Do not upload while Google OAuth review is pending.
+- Rebuild the v1.0.5 package after Google OAuth approval.
 - Build future upload packages with `scripts/package-webstore.sh`.
 - The package script uses an explicit production allowlist and excludes `.git`, `.DS_Store`, source maps, dev docs, stale launch artifacts, and non-production debris.
 - After packaging, compare the ZIP contents against the clean staging directory produced by the script.
@@ -148,6 +176,8 @@ Next steps:
 - Explain Firebase/Firestore: optional public board sharing stores a board snapshot for the public link.
 - Explain ExtensionPay/Stripe: trial, subscription, and Pro access management.
 - Explain `web_accessible_resources`: required for the optional pinned floating widget iframe to load the Pullhub popup and its local scripts/styles inside a webpage.
+- v1.0.5 includes no remote analytics.
+- `drive.metadata` remains absent.
 
 ## Before Publish
 - Test Google sign-in with the final extension ID.
@@ -170,4 +200,4 @@ Next steps:
 - Prepare 5 screenshots before submit review.
 - Run final production-ID OAuth / sign-in / Slides push / Drive fallback test before submit review.
 - Record final package SHA and commit before submit review.
-- Confirm upload ZIP checksum matches: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`.
+- Record the rebuilt v1.0.5 ZIP checksum after Google OAuth approval and packaging.

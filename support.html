@@ -59,8 +59,8 @@
               <details id="account-login" open>
                 <summary>Account &amp; Login</summary>
                 <div class="doc-accordion-body">
-                  <h3>Use the same Google account</h3>
-                  <p>If you use multiple Google accounts, make sure Chrome, Google Slides, and Pullhub are using the same account.</p>
+                  <h3>Use the right Google account for Slides</h3>
+                  <p>Google sign-in is used for Google Slides, Drive fallback uploads, and Firebase sharing ownership. Pullhub Pro/trial status is handled separately through ExtensionPay.</p>
                   <ul>
                     <li>Open Pullhub from the Chrome toolbar.</li>
                     <li>Sign out and sign in again if the wrong account appears.</li>
@@ -94,12 +94,12 @@
                 <summary>Pullhub Pro</summary>
                 <div class="doc-accordion-body">
                   <h3>Trial, subscription, and billing</h3>
-                  <p>Pullhub Pro includes a 14-day trial. Payments and subscription access are handled through ExtensionPay and Stripe.</p>
+                  <p>Pullhub Pro includes a 14-day trial. Payments and subscription access are handled through ExtensionPay and Stripe, and the entitlement is tied to ExtensionPay / the Chrome profile rather than the currently selected Google Slides account.</p>
                   <ul>
                     <li>If Pro does not unlock after payment, reopen Pullhub and wait a moment for license status to refresh.</li>
                     <li>Restart Chrome if Pro still does not appear.</li>
-                    <li>Make sure you are using the same email you used for payment.</li>
-                    <li>Email support with your payment email and approximate purchase time if access still looks wrong.</li>
+                    <li>Switching Google accounts inside the same Chrome profile may still show the same trial or Pro state.</li>
+                    <li>Email support with your payment email, the Google account shown in Pullhub, and approximate purchase time if access still looks wrong.</li>
                   </ul>
                 </div>
               </details>
@@ -146,6 +146,8 @@
               <details id="share-boards">
                 <summary>Share Boards</summary>
                 <div class="doc-accordion-body">
+                  <h3>Public board sharing is Pro-only</h3>
+                  <p>Free includes Push to Google Slides and ZIP export. Public board sharing links are available with Pro.</p>
                   <h3>A public link is not updating</h3>
                   <p>Share links are snapshots of a board at the moment you share it. Re-share the board when you want the public version to include new changes.</p>
                   <h3>A shared board says unavailable</h3>

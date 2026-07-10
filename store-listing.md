@@ -1,13 +1,19 @@
 # Pullhub Chrome Web Store Listing Draft
 
-## Current CWS Draft Status - 2026-06-18
+## Current CWS Draft Status - 2026-07-10
 - Extension ID: `hgkankpnpgoikbcggnlnlgddmnkendof`
 - Chrome Web Store URL: `https://chromewebstore.google.com/detail/pullhub/hgkankpnpgoikbcggnlnlgddmnkendof`
 - Status: Draft, not submitted for review, not published.
 - The CWS URL may 404 until publication; this is expected.
-- Manifest version for next submission: `1.0.2`
-- CWS/dashboard visible version (`version_name`): `1.0.2`
-- Latest uploaded package SHA-256: `70cb23b49a8b51cc2951c2c2c5988570de3d7b0091637e10bcd1ab65d00df128`
+- Active source is clean at commit `634eddf58a773191a5ffe0da7da10fe69b345c42`.
+- Current source manifest remains `1.0.4` only because release is paused while Google OAuth review is pending.
+- Next actual Chrome Web Store submission should be v1.0.5 after Google OAuth approval.
+- v1.0.5 has not been uploaded.
+- Rebuild/package must be rerun after Google OAuth approval before upload.
+- Historical 1.0.4 rebuilt package SHA-256: `c9c6d258a9a1d8c0df6f19f4d44191c81ddaa79ec1cbf8097a0ba53d81d6f54f`.
+- The historical 1.0.4 package is superseded for v1.0.5 and should not be treated as the next upload candidate.
+- v1.0.5 includes no remote analytics.
+- `drive.metadata` remains absent.
 - Distribution / Payments: Contains in-app purchases.
 - Distribution / Visibility: Public.
 - Remote code answer: No, Pullhub does not execute remotely hosted code.
@@ -27,10 +33,10 @@ Core features:
 - Push boards to current, selected, or new Google Slides
 - Organize references with board colors and notes
 - Export and import ZIP backups
-- Optional board sharing
+- Pro public board sharing links
 - Light and dark appearance modes
 
-Free plan limits are designed for trying the workflow. Pullhub Pro unlocks unlimited boards, captures, and sharing.
+Free includes up to 4 boards, 8 captures, Push to Google Slides, and ZIP export. Pullhub Pro adds more room for active projects, more export and sharing usage, and public board sharing links.
 
 ## Permission Justification
 - `contextMenus`: Adds right-click save and push actions.
@@ -48,13 +54,14 @@ Free plan limits are designed for trying the workflow. Pullhub Pro unlocks unlim
 - `web_accessible_resources`: Allows the extension popup and its required local scripts/styles to render inside the optional pinned floating widget iframe on webpages.
 - Google `presentations`: Inserts user-selected references and layouts into Google Slides.
 - Google `drive.file`: Creates and manages Pullhub-created fallback image files used when Google Slides cannot insert a source image directly.
-- Google `userinfo.email`: Shows the signed-in account, links account state to Pullhub access, and supports Firebase sharing ownership.
+- Google `userinfo.email`: Shows the signed-in Google account and supports Firebase sharing ownership. Pullhub Pro/trial entitlement is handled separately through ExtensionPay.
 - Drive fallback public-link behavior: If direct Slides insertion fails, Pullhub may upload an image to the user's Drive and set that fallback file so anyone with the link can view it, only so Google Slides can render the image.
 - Firebase/Firestore: Used only for optional public board sharing. Shared boards store a snapshot of the board data needed for the public link.
 - ExtensionPay/Stripe: Used for trial, subscription, and Pro access management.
 
 ## Store Listing URLs
 - Homepage: `https://debutt.studio/`
+- Getting Started: `https://debutt.studio/getting-started.html`
 - Privacy Policy: `https://debutt.studio/privacy.html`
 - Support: `https://debutt.studio/support.html`
 - Terms: `https://debutt.studio/terms.html`
