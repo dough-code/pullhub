@@ -4,7 +4,7 @@ Launch pricing:
 - Free: up to 4 boards
 - Free: 8 captures to try the full flow
 - Free: Push to Google Slides
-- Free: ZIP export
+- Free: ZIP Export
 - Pro: more room for active projects
 - Pro: more export and sharing usage
 - Pro: public board sharing links

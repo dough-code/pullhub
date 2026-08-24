@@ -36,10 +36,10 @@ Core features:
 - Pro public board sharing links
 - Light and dark appearance modes
 
-Free includes up to 4 boards, 8 captures, Push to Google Slides, and ZIP export. Pullhub Pro adds more room for active projects, more export and sharing usage, and public board sharing links.
+Free includes up to 4 boards, 8 captures, Push to Google Slides, and ZIP Export. Pullhub Pro adds more room for active projects, more export and sharing usage, and public board sharing links.
 
 ## Permission Justification
-- `contextMenus`: Adds right-click save and push actions.
+- `contextMenus`: Adds Right-click Save and push actions.
 - `tabs`: Detects active Google Slides tabs and current page context.
 - `activeTab`: Captures or interacts with the current user-selected page.
 - `storage`: Stores boards, settings, signed-in account display state, subscription status cache, and local extension state.
